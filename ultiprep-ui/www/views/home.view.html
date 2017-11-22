@@ -1,0 +1,82 @@
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="brand">
+                <a href="#"><span class="fa fa-paperclip"></span> Ultiprep</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container intro-container" id="intro">
+    <div class="row text-center intro-text">
+        <h3>Ultimate exam prep guide.</h3>
+    </div>
+    <div class="row intro-items">
+        <div class="col-xs-6 col-image">
+            <div class="stub1">
+            </div>
+            <img src="assets/images/ng-notes-sm.png" class="product-image" />
+        </div>
+        <div class="col-xs-6 col-forms">
+            <div class="forms-container">
+                <form id="signin-form" ng-submit="vm.logIn()">
+                    <h1>Log in</h1>
+                    <div class="signin-email">
+                        <label for="email"></label>
+                        <input type="email" placeholder="My email" ng-model="vm.signinCredentials.email" />
+                    </div>
+                    <div class="signin-password">
+                        <label for="password"></label>
+                        <input type="password" placeholder="My super-secret password" ng-model="vm.signinCredentials.password" />
+                    </div>
+                    <div class="signin-buttons">
+                        <input type="submit" value="Sign in" class="button button-main" />
+                        <input type="button" value="Create new account" class="button button-aside flip" />
+                    </div>
+                </form>
+                <!-- Register form -->
+                <form id="register-form" ng-submit="vm.signUp()">
+                    <h1>Sign Up</h1>
+                    <div class="register-name">
+                        <label for="name"></label>
+                        <input type="text" placeholder="My name is" ng-model="vm.registerCredentials.name" />
+                    </div>
+                    <div class="register-email">
+                        <label for="email"></label>
+                        <input type="email" placeholder="My email is" ng-model="vm.registerCredentials.email" />
+                    </div>
+                    <div class="register-password">
+                        <label for="password"></label>
+                        <input type="password" placeholder="My super-secret password is" ng-model="vm.registerCredentials.password" />
+                    </div>
+                    <div class="register-buttons">
+                        <input type="submit" value="Register now" class="button button-main" />
+                        <input type="button" value="Already have an account?" class="button button-aside flip" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="stub2">
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="row text-center">
+            <p>
+                &copy; <span id="copyright-years">2017</span> Ultiprep &nbsp;&bull;&nbsp; View code <a href="https://github.com/anirudhkhanna/ng-notes" target="_blank">on GitHub</a>
+            </p>
+        </div>
+    </div>
+</footer>
+<script>
+var currYear = new Date().getFullYear();
+if (currYear != '2017')
+    document.getElementById('copyright-years').appendChild(document.createTextNode(' - ' + currYear));
+</script>
+<script src="js/home-script.js"></script>
+<script src="assets/watnotif/js/watnotif-1.0.min.js" defer></script>
+<script>
+var cssFileHref = 'css/home-style.css';
+loadCSSFile(cssFileHref);
+</script>

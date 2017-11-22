@@ -1,0 +1,117 @@
+<header class="header">
+    <div class="brand">
+        <a ui-sref="notes.state-notes"><span class="fa fa-book"></span> Ultiprep</a>
+    </div>
+    <div class="current-user" ng-show="isLoggedIn">
+        <span class="user-profile">
+			<a ui-sref="notes.state-profile"><span class="user-name" title="{{currentUser.name}}" ng-bind="currentUser.name | userNameFormat">Loading...</span></a>
+        </span>
+        <span class="user-logout">
+			<a href="" ng-click="logout()">Log out</a>
+		</span>
+    </div>
+    <div class="search">
+        <span class="search-icon glyphicon glyphicon-search"></span>
+        <input type="text" placeholder="Search notes..." ng-model="searchString" />
+    </div>
+    <div class="sidebar-container">
+        <ul class="sidebar-nav">
+            <li>
+                <a ui-sref="notes.state-notes" class="ripple"><span class="side-icon icon-paperclip"></span> Notes</a>
+            </li>
+            <li>
+                <a ui-sref="notes.state-pin" class="ripple"><span class="side-icon icon-archive"></span> Pinned Notes</a>
+            </li>
+            <li>
+                <a ui-sref="notes.state-trash" class="ripple"><span class="side-icon icon-trash"></span> Trash</a>
+            </li>
+        </ul>
+        <ul class="sidebar-nav">
+            <div class="list-header">
+                <div class="list-title">Tags</div>
+                <a class="list-edit-btn" data-toggle="modal" data-target="#tags-edit-modal">
+                    <span class="ripple">EDIT</span>
+                </a>
+            </div>
+            <li ng-repeat="tag in tags">
+                <a ui-sref="notes.state-tags" class="ripple" ng-click="setSelectedTags([tag])"><span class="side-icon icon-tag"></span> <span ng-bind="tag">Loading...</span></a>
+            </li>
+        </ul>
+        <ul class="sidebar-nav">
+            <li>
+                <a ui-sref="notes.state-profile" class="ripple"><span class="side-icon icon-user"></span> Your profile</a>
+            </li>
+        </ul>
+    </div>
+</header>
+<div ui-view id="ui-view">
+</div>
+<div class="page-message page-loading hidden">
+    <span class="fa fa-paperclip page-message-icon"></span>
+    <p class="page-message-text">Loading your notes...</p>
+</div>
+<div class="add-note-btn">
+    <div title="Add a new note" class="opt-tooltip add-div">
+        <button class="add-btn ripple-light" ng-click="createNote();">+</button>
+    </div>
+</div>
+<div class="modal fade-pop" id="tags-edit-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-header-title">Edit tags</h3>
+            </div>
+            <div class="modal-body">
+                <form id="add-tag-form" ng-submit="addTag(newTag)">
+                    <span>+</span>
+                    <input type="text" placeholder="Create new tag" ng-model="newTag" maxlength="{{tagMaxLength}}" />
+                </form>
+                <ul>
+                    <li ng-repeat="tag in tags">
+                        {{tag}}
+                        <a title="Delete tag" class="opt-tooltip opt-icon icon-trash" ng-click="removeTag(tag)"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/notes-script.js"></script>
+<script src="assets/watnotif/js/watnotif-1.0.min.js" defer></script>
+<script>
+var cssFileHref = 'css/notes-style.css';
+loadCSSFile(cssFileHref);
+</script>
+<script>
+var cssFileHrefs = [
+    'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/code_view.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/colors.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/emoticons.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/file.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/image_manager.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/image.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/css/plugins/line_breaker.css',
+];
+
+$(document).ready(function() {
+    for (var i = 0; i < cssFileHrefs.length; i++)
+        loadCSSFile(cssFileHrefs[i]);
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/align.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/code_beautifier.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/code_view.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/colors.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/emoticons.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/entities.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/file.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/image.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/image_manager.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/inline_style.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/line_breaker.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/link.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/lists.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/paragraph_format.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/paragraph_style.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.6.1/js/plugins/save.min.js" defer></script>
