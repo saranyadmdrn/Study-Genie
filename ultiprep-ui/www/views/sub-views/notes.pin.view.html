@@ -59,7 +59,6 @@
                         <span title="Created {{note.dateCreated}}" class="opt-tooltip date">{{ note.dateCreated }}</span>
                     </div>
                     <div class="note-modal-opt">
-                        <a title="Speech input" class="opt-tooltip opt-icon-lg icon-mic speech-input" ng-click="speechInput($index)"></a>
                         <a title="Change color" class="opt-tooltip opt-icon-lg icon-palette colors-popup">
                             <ul>
                                 <li ng-class="colorClass" class="color-btn" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>

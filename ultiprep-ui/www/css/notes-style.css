@@ -1321,41 +1321,41 @@ body.modal-open {
 
 
 /* Labels edit modal */
-#labels-edit-modal {
+#tags-edit-modal {
 	word-wrap: break-word;
 	overflow-y: scroll;
 	margin-top: 10vh;
 }
 
-#labels-edit-modal .modal-dialog {
+#tags-edit-modal .modal-dialog {
 	max-width: 400px;
 }
 
-#labels-edit-modal .modal-content {
+#tags-edit-modal .modal-content {
 	border-radius: 0;
 }
 
-#labels-edit-modal .modal-header {
+#tags-edit-modal .modal-header {
 	border: 0;
 	padding-left: 30px;
 }
 
-#labels-edit-modal .modal-header .modal-header-title {
+#tags-edit-modal .modal-header .modal-header-title {
 	font-family: Roboto, sans-serif;
 	font-size: 18px;
 	font-weight: 500;
 }
 
-#labels-edit-modal .modal-body {
+#tags-edit-modal .modal-body {
 	padding: 3px 30px 25px;
 }
 
-#labels-edit-modal #add-label-form {
+#tags-edit-modal #add-tag-form {
 	margin-bottom: 20px;
 	width: 100%;
 }
 
-#labels-edit-modal #add-label-form span {
+#tags-edit-modal #add-tag-form span {
 	margin-left: -3px;
 	margin-right: 3px;
 	font-family: Roboto, sans-serif;
@@ -1363,7 +1363,7 @@ body.modal-open {
 	color: #aaa;
 }
 
-#labels-edit-modal #add-label-form input {
+#tags-edit-modal #add-tag-form input {
 	width: 90%;
 	border: 0;
 	outline: 0;
@@ -1371,26 +1371,26 @@ body.modal-open {
 	font-family: Roboto, sans-serif;
 }
 
-#labels-edit-modal #add-label-form input:focus {
+#tags-edit-modal #add-tag-form input:focus {
 	border-bottom: 1px solid #aaa;
 }
 
-#labels-edit-modal ul {
+#tags-edit-modal ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
 
-#labels-edit-modal ul li {
+#tags-edit-modal ul li {
 	margin-bottom: 10px;
 	font-family: Roboto, sans-serif;
 }
 
-#labels-edit-modal a.opt-icon {
+#tags-edit-modal a.opt-icon {
 	float: right;
 }
 
-#labels-edit-modal a.opt-icon:hover {
+#tags-edit-modal a.opt-icon:hover {
 	opacity: 1;
 	cursor: pointer;
 }

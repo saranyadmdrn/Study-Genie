@@ -368,11 +368,6 @@ app.controller('notesController', function($scope, $state, authentication, data)
         $('.note-edit-modal').on('hidden.bs.modal', function() {
 
             data.updateNote($scope.currentNote);
-
-            if (recognizing) {
-                startDictation(null, '');
-            }
-
             $scope.currentNote = null;
         });
     };
