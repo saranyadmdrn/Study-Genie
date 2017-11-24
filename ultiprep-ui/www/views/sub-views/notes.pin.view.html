@@ -1,5 +1,5 @@
 <div class="container notes-container" ng-cloak>
-    <div class="masonry-item note" ng-class="note.colorClass" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isPinned:true} | filter:{isTrashed:false} | searchFor:searchString)">
+    <div class="masonry-item note note-bg-pinned" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isPinned:true} | filter:{isTrashed:false} | searchFor:searchString)">
         <div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
             <h3 class="note-title">{{ note.title }}</h3>
             <p class="note-content" froala-view="note.content | noteTilePrettify"></p>
@@ -18,7 +18,7 @@
                     <li class="color-btn" ng-class="colorClass" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
                 </ul>
             </a>
-            <a title="Unpin" class="opt-tooltip opt-icon icon-unpin" ng-click="unpinNote(note)"></a>
+            <a title="Unpin" class="opt-tooltip opt-icon icon-unarchive" ng-click="unpinNote(note)"></a>
             <a class="opt-icon icon-dots menu-popup">
                 <ul>
                     <li ng-click="duplicateNote(note)">Make a copy</li>

@@ -35,6 +35,9 @@ process.on('SIGINT', function() {
     });
 });
 
-require('../models/User');
+require('../models/Event');
+require('../models/Group');
 require('../models/Note');
 require('../models/Tag');
+require('../models/User');
+

@@ -1775,6 +1775,12 @@ hr.profile-hr {
 
 
 /* Note colors */
+.note-bg {
+	background: #BEB095 !important;
+}
+.note-bg-pinned {
+	background: #EFCA8B !important;
+}
 .color1 {
 	background: #f36a4e !important;
 }

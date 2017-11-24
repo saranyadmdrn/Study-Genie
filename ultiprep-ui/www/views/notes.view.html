@@ -17,29 +17,32 @@
     <div class="sidebar-container">
         <ul class="sidebar-nav">
             <li>
-                <a ui-sref="notes.state-notes" class="ripple"><span class="side-icon icon-paperclip"></span> Notes</a>
+                <a ui-sref="notes.state-notes" class="ripple"> Notes</a>
             </li>
             <li>
-                <a ui-sref="notes.state-pin" class="ripple"><span class="side-icon icon-archive"></span> Pinned Notes</a>
+                <a ui-sref="notes.state-pin" class="ripple"> Pinned Notes</a>
             </li>
             <li>
-                <a ui-sref="notes.state-trash" class="ripple"><span class="side-icon icon-trash"></span> Trash</a>
+                <a ui-sref="notes.state-trash" class="ripple"> Trash</a>
+            </li>
+        </ul>
+        <ul class="sidebar-nav">
+            <li>
+                <a ui-sref="notes.state-profile" class="ripple"></span> Profile</a>
+            </li>
+            <li>
+                <a ui-sref="notes.state-groups" class="ripple"></span> Groups</a>
             </li>
         </ul>
         <ul class="sidebar-nav">
             <div class="list-header">
-                <div class="list-title">Tags</div>
+                <div class="list-title">Interests</div>
                 <a class="list-edit-btn" data-toggle="modal" data-target="#tags-edit-modal">
                     <span class="ripple">EDIT</span>
                 </a>
             </div>
             <li ng-repeat="tag in tags">
-                <a ui-sref="notes.state-tags" class="ripple" ng-click="setSelectedTags([tag])"><span class="side-icon icon-tag"></span> <span ng-bind="tag">Loading...</span></a>
-            </li>
-        </ul>
-        <ul class="sidebar-nav">
-            <li>
-                <a ui-sref="notes.state-profile" class="ripple"><span class="side-icon icon-user"></span> Your profile</a>
+                <a ui-sref="notes.state-tags" class="ripple" ng-click="setSelectedTags([tag])"><span ng-bind="tag">Loading...</span></a>
             </li>
         </ul>
     </div>
@@ -65,12 +68,12 @@
             <div class="modal-body">
                 <form id="add-tag-form" ng-submit="addTag(newTag)">
                     <span>+</span>
-                    <input type="text" placeholder="Create new tag" ng-model="newTag" maxlength="{{tagMaxLength}}" />
+                    <input type="text" placeholder="Add new interest" ng-model="newTag" maxlength="{{tagMaxLength}}" />
                 </form>
                 <ul>
                     <li ng-repeat="tag in tags">
                         {{tag}}
-                        <a title="Delete tag" class="opt-tooltip opt-icon icon-trash" ng-click="removeTag(tag)"></a>
+                        <a title="Remove interest" class="opt-tooltip opt-icon icon-trash" ng-click="removeTag(tag)"></a>
                     </li>
                 </ul>
             </div>

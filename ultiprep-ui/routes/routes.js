@@ -71,6 +71,7 @@ var signUp = function(req, res) {
         note.isTrashed = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 0;
         note.author = user._id;
+        note.public = true;
         note.contibutors = [];
         note.save(function(err) {
             if (err) {
@@ -91,6 +92,7 @@ var signUp = function(req, res) {
         note.isTrashed = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 1;
         note.author = user._id;
+        note.public = true;
         note.contibutors = [];
         note.save(function(err) {
             if (err) {
@@ -111,6 +113,7 @@ var signUp = function(req, res) {
         note.isTrashed = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 2;
         note.author = user._id;
+        note.public = true;
         note.contibutors = [];
         note.save(function(err) {
             if (err) {
@@ -131,6 +134,7 @@ var signUp = function(req, res) {
         note.isTrashed = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 3;
         note.author = user._id;
+        note.public = false;
         note.contibutors = [];
         note.save(function(err) {
             if (err) {
@@ -294,7 +298,7 @@ var getNotes = function(req, res) {
         return;
     }
 
-    var query = { author: req.payload._id };
+    var query = { $or: [ { author: req.payload._id }, { public: true } ] };
     Note.find(query).exec(function(err, notes) {
         if (err)
             res.status(401).json(err);
@@ -362,8 +366,36 @@ var deleteNote = function(req, res) {
     });
 };
 
+var postEvent = function(req, res) {
+    if (!req.payload._id) {
+        res.status(401).json({
+            message: 'UnauthorizedError: Private profile.'
+        });
+        return;
+    }
+
+    var receivedEvent = req.body;
+    var newEvent = new Event();
+
+    newEvent.type = receivedEvent.type;
+    newEvent.user = receivedEvent.user;
+    newEvent.dateTime = receivedEvent.dateTime;
+    newEvent.data = receivedEvent.data;
+    newEvent.link = receivedEvent.link;
+
+    newEvent.save(function(err) {
+        if (err)
+            res.status(401).json(err);
+        else
+            res.status(200).json(note);
+    });
+
+}
+
 router.post('/signup', signUp);
 router.post('/login', logIn);
+
+router.post('/event', postEvent);
 
 router.get('/getuser', auth, getUser);
 router.put('/updateuser', auth, updateUser);

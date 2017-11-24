@@ -28,6 +28,9 @@ var noteSchema = mongoose.Schema({
 	author: {
 		type: String
 	},
+	public: {
+		type: Boolean
+	},
 	contributors: {
 		type: [String]
 	}

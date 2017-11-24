@@ -12,26 +12,21 @@
         <h3>Ultimate exam prep guide.</h3>
     </div>
     <div class="row intro-items">
-        <div class="col-xs-6 col-image">
-            <div class="stub1">
-            </div>
-            <img src="assets/images/ng-notes-sm.png" class="product-image" />
-        </div>
-        <div class="col-xs-6 col-forms">
+        <div class="col-xs-12 col-forms">
             <div class="forms-container">
                 <form id="signin-form" ng-submit="vm.logIn()">
                     <h1>Log in</h1>
                     <div class="signin-email">
                         <label for="email"></label>
-                        <input type="email" placeholder="My email" ng-model="vm.signinCredentials.email" />
+                        <input type="email" placeholder="Enter email" ng-model="vm.signinCredentials.email" />
                     </div>
                     <div class="signin-password">
                         <label for="password"></label>
-                        <input type="password" placeholder="My super-secret password" ng-model="vm.signinCredentials.password" />
+                        <input type="password" placeholder="Enter password" ng-model="vm.signinCredentials.password" />
                     </div>
                     <div class="signin-buttons">
-                        <input type="submit" value="Sign in" class="button button-main" />
-                        <input type="button" value="Create new account" class="button button-aside flip" />
+                        <input type="submit" value="Log In" class="button button-main" />
+                        <input type="button" value="Register" class="button button-aside flip" />
                     </div>
                 </form>
                 <!-- Register form -->
@@ -39,19 +34,19 @@
                     <h1>Sign Up</h1>
                     <div class="register-name">
                         <label for="name"></label>
-                        <input type="text" placeholder="My name is" ng-model="vm.registerCredentials.name" />
+                        <input type="text" placeholder="Enter name" ng-model="vm.registerCredentials.name" />
                     </div>
                     <div class="register-email">
                         <label for="email"></label>
-                        <input type="email" placeholder="My email is" ng-model="vm.registerCredentials.email" />
+                        <input type="email" placeholder="Enter email" ng-model="vm.registerCredentials.email" />
                     </div>
                     <div class="register-password">
                         <label for="password"></label>
-                        <input type="password" placeholder="My super-secret password is" ng-model="vm.registerCredentials.password" />
+                        <input type="password" placeholder="Enter password" ng-model="vm.registerCredentials.password" />
                     </div>
                     <div class="register-buttons">
-                        <input type="submit" value="Register now" class="button button-main" />
-                        <input type="button" value="Already have an account?" class="button button-aside flip" />
+                        <input type="submit" value="Register new account" class="button button-main" />
+                        <input type="button" value="Log into existing account" class="button button-aside flip" />
                     </div>
                 </form>
             </div>
@@ -60,15 +55,6 @@
     <div class="stub2">
     </div>
 </div>
-<footer class="footer">
-    <div class="container">
-        <div class="row text-center">
-            <p>
-                &copy; <span id="copyright-years">2017</span> Ultiprep &nbsp;&bull;&nbsp; View code <a href="https://github.com/anirudhkhanna/ng-notes" target="_blank">on GitHub</a>
-            </p>
-        </div>
-    </div>
-</footer>
 <script>
 var currYear = new Date().getFullYear();
 if (currYear != '2017')

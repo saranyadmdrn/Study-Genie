@@ -37,6 +37,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/profile',
             templateUrl: 'views/sub-views/notes.profile.view.html',
             controller: 'profileController as vm',
+        })
+        .state('notes.state-groups', {
+            url: '/groups',
+            templateUrl: 'views/sub-views/notes.groups.view.html',
+            controller: 'groupsController as vm',
         });
 
     //  $locationProvider.html5Mode(true);
@@ -67,6 +72,9 @@ app.run(function($rootScope, $state, authentication) {
                 event.preventDefault();
                 $state.go('landing');
             } else if (toState.name === 'notes.state-profile' && !authentication.isLoggedIn()) {
+                event.preventDefault();
+                $state.go('landing');
+            }  else if (toState.name === 'notes.state-groups' && !authentication.isLoggedIn()) {
                 event.preventDefault();
                 $state.go('landing');
             } else if (toState.name === 'landing' && authentication.isLoggedIn()) {

@@ -1,5 +1,5 @@
 <div class="container notes-container" ng-cloak>
-    <div class="masonry-item note" ng-class="note.colorClass" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isTrashed:true} | searchFor:searchString)">
+    <div class="masonry-item note" ng-class="{'note-bg-pinned' : note.isPinned, 'note-bg' : !note.isPinned}" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isTrashed:true} | searchFor:searchString)">
         <div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
             <h3 class="note-title">{{ note.title }}</h3>
             <p class="note-content" froala-view="note.content | noteTilePrettify"></p>
@@ -14,7 +14,7 @@
         <div class="note-opt">
             <a class="opt-icon icon-dots menu-popup">
                 <ul>
-                    <li ng-click="removeNoteFromTrash(note)">Restore</li>
+                    <li ng-click="removeNoteFromTrash(note)">Put back</li>
                     <li ng-click="deleteNotePermanently(note)">Delete permanently</li>
                 </ul>
             </a>
@@ -22,7 +22,7 @@
     </div>
     <div class="container-message" ng-show="filteredNotes.length === 0">
         <span class="glyphicon glyphicon-trash container-message-icon"></span>
-        <p class="container-message-text">No notes found here</p>
+        <p class="container-message-text">Nothing here</p>
     </div>
 </div>
 <div class="modal fade-pop note-modal note-view-modal" ng-repeat="note in notes | filter:{isTrashed:true} | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>

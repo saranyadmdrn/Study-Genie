@@ -235,7 +235,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
         newNote.isTrashed = false;
         newNote.timestamp = Math.floor(Date.now() / 1000);
 
-        $scope.notes.unshift(newNote);
+        //$scope.notes.unshift(newNote);
         data.addNote(newNote);
 
         setTimeout(function() {
@@ -371,6 +371,10 @@ app.controller('notesController', function($scope, $state, authentication, data)
             $scope.currentNote = null;
         });
     };
+
+    $scope.shareNote = function(note, $index) {
+
+    }
 
     $scope.logNotes = function() {
         console.log($scope.notes);
