@@ -15,6 +15,9 @@ var eventSchema = mongoose.Schema({
     },
     user: {
         type: String
+    },
+    score: {
+        type: Number
     }
 });
 

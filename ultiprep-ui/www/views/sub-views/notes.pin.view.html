@@ -13,11 +13,6 @@
         </div>
         <div class="note-opt">
             <a title="Edit" class="opt-tooltip opt-icon icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}" ng-click="setCurrentNote(note)"></a>
-            <a title="Change color" class="opt-tooltip opt-icon icon-palette colors-popup">
-                <ul>
-                    <li class="color-btn" ng-class="colorClass" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
-                </ul>
-            </a>
             <a title="Unpin" class="opt-tooltip opt-icon icon-unarchive" ng-click="unpinNote(note)"></a>
             <a class="opt-icon icon-dots menu-popup">
                 <ul>
@@ -34,7 +29,7 @@
 </div>
 <div class="modal fade-pop note-modal note-edit-modal" ng-repeat="note in notes | filter:{isPinned:true} | filter:{isTrashed:false} | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
     <div class="modal-dialog">
-        <div class="modal-content" ng-class="note.colorClass">
+        <div class="modal-content" ng-class="{'note-bg-pinned' : note.isPinned, 'note-bg' : !note.isPinned}">
             <form class="edit-note-form">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <div class="modal-header">
@@ -59,11 +54,6 @@
                         <span title="Created {{note.dateCreated}}" class="opt-tooltip date">{{ note.dateCreated }}</span>
                     </div>
                     <div class="note-modal-opt">
-                        <a title="Change color" class="opt-tooltip opt-icon-lg icon-palette colors-popup">
-                            <ul>
-                                <li ng-class="colorClass" class="color-btn" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
-                            </ul>
-                        </a>
                         <a title="Change tags" class="opt-tooltip opt-icon-lg icon-tag tags-popup">
                             <ul>
                                 <li ng-repeat="tag in tags">
@@ -83,7 +73,7 @@
 </div>
 <div class="modal fade-pop note-modal note-view-modal" ng-repeat="note in notes | filter:{isPinned:true} | filter:{isTrashed:false} | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
     <div class="modal-dialog">
-        <div class="modal-content" ng-class="note.colorClass">
+        <div class="modal-content" ng-class="{'note-bg-pinned' : note.isPinned, 'note-bg' : !note.isPinned}">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 class="note-title">{{ note.title }}</h3>
@@ -102,11 +92,6 @@
                 </div>
                 <div class="note-modal-opt">
                     <a title="Edit" class="opt-tooltip opt-icon-lg icon-pencil" data-toggle="modal" ng-click="openEditModalViaViewModal(note, $index)"></a>
-                    <a title="Change color" class="opt-tooltip opt-icon-lg icon-palette colors-popup">
-                        <ul>
-                            <li ng-class="colorClass" class="color-btn" ng-repeat="colorClass in colorClasses" ng-click="setNoteColor(note, colorClass)"></li>
-                        </ul>
-                    </a>
                     <a title="Unpin" class="opt-tooltip opt-icon-lg icon-unpin" ng-click="unpinNoteViaModal(note, $index)" data-dismiss="modal"></a>
                     <a title="Delete" class="opt-tooltip opt-icon-lg icon-trash" ng-click="moveNoteToTrashViaModal(note, $index)" data-dismiss="modal"></a>
                     <a title="All done" class="opt-tooltip opt-icon-lg icon-check" data-dismiss="modal"></a>

@@ -75,7 +75,7 @@
 </div>
 <div class="modal fade-pop note-modal note-view-modal" ng-repeat="note in notes | filter:{isPinned:false} | filter:{isTrashed:false} | searchFor:searchString | filterTags:selectedTags" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
     <div class="modal-dialog">
-        <div class="modal-content" ng-class="note.colorClass">
+        <div class="modal-content" ng-class="{'note-bg-pinned' : note.isPinned, 'note-bg' : !note.isPinned}">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 class="note-title">{{ note.title }}</h3>
