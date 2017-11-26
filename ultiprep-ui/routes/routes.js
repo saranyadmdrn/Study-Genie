@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Note = mongoose.model('Note');
 var Tag = mongoose.model('Tag');
+var Event = mongoose.model('Event');
 
 var router = express.Router();
 
@@ -367,6 +368,7 @@ var deleteNote = function(req, res) {
 };
 
 var postEvent = function(req, res) {
+
     if (!req.payload._id) {
         res.status(401).json({
             message: 'UnauthorizedError: Private profile.'
@@ -375,19 +377,16 @@ var postEvent = function(req, res) {
     }
 
     var receivedEvent = req.body;
-    var newEvent = new Event();
 
-    newEvent.type = receivedEvent.type;
-    newEvent.user = receivedEvent.user;
-    newEvent.dateTime = receivedEvent.dateTime;
-    newEvent.data = receivedEvent.data;
-    newEvent.link = receivedEvent.link;
+    receivedEvent.user = req.payload._id;
+
+    var newEvent = new Event(receivedEvent);
 
     newEvent.save(function(err) {
         if (err)
             res.status(401).json(err);
         else
-            res.status(200).json(note);
+            res.status(200).json(newEvent);
     });
 
 }
@@ -395,7 +394,7 @@ var postEvent = function(req, res) {
 router.post('/signup', signUp);
 router.post('/login', logIn);
 
-router.post('/event', postEvent);
+router.post('/event', auth, postEvent);
 
 router.get('/getuser', auth, getUser);
 router.put('/updateuser', auth, updateUser);

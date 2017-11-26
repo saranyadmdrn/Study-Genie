@@ -99,6 +99,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
             data.getNotes()
                 .success(function(data) {
                     $scope.notes = data.sort(reverseCompareTimestamps);
+                    data.postEvent(newEvent('note_copy', $scope.notes[0])).success(function() {}).error(function (err) {});
                 })
                 .error(function(err) {
                     alertToast('An error occurred while loading notes. ' + err.message);
@@ -114,6 +115,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 
         note.isPinned = true;
         data.updateNote(note);
+        data.postEvent(newEvent('note_pin', note)).success(function() {}).error(function (err) {});
     };
 
     $scope.pinNoteViaModal = function(note, $index) {
@@ -136,6 +138,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 
         note.isPinned = false;
         data.updateNote(note);
+        data.postEvent(newEvent('note_unpin', note)).success(function() {}).error(function (err) {});
     };
 
     $scope.unpinNoteViaModal = function(note, $index) {
@@ -158,6 +161,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 
         note.isTrashed = true;
         data.updateNote(note);
+        data.postEvent(newEvent('note_trash', note)).success(function() {}).error(function (err) {});
     };
 
     $scope.moveNoteToTrashViaModal = function(note, $index) {
@@ -180,6 +184,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 
         note.isTrashed = false;
         data.updateNote(note);
+        data.postEvent(newEvent('note_untrash', note)).success(function() {}).error(function (err) {});
     };
 
     $scope.removeNoteFromTrashViaModal = function(note, $index) {
@@ -204,6 +209,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 
         $scope.notes.splice(index, 1);
         data.removeNote(note);
+        data.postEvent(newEvent('note_delete', note)).success(function() {}).error(function (err) {});
     };
 
     $scope.deleteNotePermanentlyViaModal = function(note, $index) {
@@ -235,7 +241,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
         newNote.isTrashed = false;
         newNote.timestamp = Math.floor(Date.now() / 1000);
 
-        //$scope.notes.unshift(newNote);
+        $scope.notes.unshift(newNote);
         data.addNote(newNote);
 
         setTimeout(function() {
@@ -247,6 +253,8 @@ app.controller('notesController', function($scope, $state, authentication, data)
                         $('#note-edit-modal-0').modal('show');
                         $scope.currentNote = $scope.notes[0];
                     }, 30);
+
+                    data.postEvent(newEvent('note_create', $scope.notes[0])).success(function() {}).error(function (err) {});
                 })
                 .error(function(err) {
                     alertToast('Could not delete note. ' + err.message);
@@ -261,6 +269,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 
         note.colorClass = colorClass;
         data.updateNote(note);
+        data.postEvent(newEvent('note_update', note)).success(function() {}).error(function (err) {});
     };
 
     $scope.checkNoteTag = function(note, tag) {
@@ -280,6 +289,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
             note.tags.splice(index, 1);
 
         data.updateNote(note);
+        data.postEvent(newEvent('note_update', note)).success(function() {}).error(function (err) {});
     };
 
     $scope.changeNoteTagViaTagsPage = function(note, tag, $index) {
@@ -303,6 +313,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
         }
 
         data.updateNote(note);
+        data.postEvent(newEvent('note_update', note)).success(function() {}).error(function (err) {});
     };
 
     $scope.addTag = function(newTag) {
@@ -322,6 +333,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
         $scope.tags.push(newTag);
         setRippleEffects();
         data.addTag(newTag);
+        data.postEvent(newEvent('tag_add', newTag)).success(function() {}).error(function (err) {});
     };
 
     $scope.removeTag = function(tag) {
@@ -337,6 +349,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
             if (index != -1) {
                 $scope.notes[i].tags.splice(index, 1);
                 data.updateNote($scope.notes[i]);
+                data.postEvent(newEvent('note_update', $scope.notes[i])).success(function() {}).error(function (err) {});
             }
         }
 
@@ -344,6 +357,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 
         $scope.tags.splice(index, 1);
         data.removeTag(tag);
+        data.postEvent(newEvent('tag_remove', newTag)).success(function() {}).error(function (err) {});
     };
 
     $scope.setSelectedTags = function(arr) {
@@ -368,6 +382,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
         $('.note-edit-modal').on('hidden.bs.modal', function() {
 
             data.updateNote($scope.currentNote);
+            data.postEvent(newEvent('note_update', $scope.currentNote)).success(function() {}).error(function (err) {});
             $scope.currentNote = null;
         });
     };
@@ -383,6 +398,23 @@ app.controller('notesController', function($scope, $state, authentication, data)
     $scope.logout = function() {
         authentication.logOut();
         $state.go('landing');
+    };
+
+    var newEvent = function(type, data) {
+        var event = {};
+        event.type = type;
+        event.data = data;
+        event.dateCreated = getCurrentDate();
+        event.timeStamp = Math.floor(Date.now() / 1000) + 0;
+
+        return event;
+    };
+
+    var getCurrentDate = function() {
+
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        var d = new Date();
+        return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
     };
 
     var ngRepFinCounter = 0;

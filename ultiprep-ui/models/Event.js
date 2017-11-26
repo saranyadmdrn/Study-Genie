@@ -4,16 +4,16 @@ var eventSchema = mongoose.Schema({
     type: {
         type: String
     },
-    dateTime: {
-        type: Date
+    dateCreated: {
+        type: String
+    },
+    timeStamp: {
+        type: Number
     },
     data: {
-        type: String
+        type: Object
     },
     user: {
-        type: String
-    },
-    link: {
         type: String
     }
 });

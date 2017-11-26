@@ -99,6 +99,14 @@ app.service('data', function($http, authentication) {
         });
     };
 
+    var postEvent = function(eventObj) {
+        return $http.post('/api/event/', eventObj, {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+        });
+    }
+
     return {
         getUser: getUser,
         updateUser: updateUser,
@@ -111,6 +119,7 @@ app.service('data', function($http, authentication) {
         addNote: addNote,
         updateNote: updateNote,
         updateNoteContent: updateNoteContent,
-        removeNote: removeNote
+        removeNote: removeNote,
+        postEvent: postEvent
     };
 });
