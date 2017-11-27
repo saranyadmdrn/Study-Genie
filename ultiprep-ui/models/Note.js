@@ -17,7 +17,7 @@ var noteSchema = mongoose.Schema({
 		type: String
 	},
 	isPinned: {
-		type: Boolean
+		type: Object
 	},
 	isTrashed: {
 		type: Boolean

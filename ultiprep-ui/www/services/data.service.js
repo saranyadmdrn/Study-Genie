@@ -107,6 +107,14 @@ app.service('data', function($http, authentication) {
         });
     }
 
+    var getUserGroups = function() {
+        return $http.get('/api/getusergroups', {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+        });
+    }
+
     return {
         getUser: getUser,
         updateUser: updateUser,
@@ -120,6 +128,7 @@ app.service('data', function($http, authentication) {
         updateNote: updateNote,
         updateNoteContent: updateNoteContent,
         removeNote: removeNote,
-        postEvent: postEvent
+        postEvent: postEvent,
+        getUserGroups: getUserGroups
     };
 });

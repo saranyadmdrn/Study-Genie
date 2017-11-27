@@ -17,7 +17,8 @@ app.controller('notesController', function($scope, $state, authentication, data)
         dateCreated: '',
         tags: [],
         colorClass: '',
-        isPinned: false,
+        isPinned: {}
+        ,
         isTrashed: false,
         timestamp: 0,
         author: ''
@@ -26,6 +27,9 @@ app.controller('notesController', function($scope, $state, authentication, data)
     $scope.currentNote = null;
     $scope.titleMaxLength = 100;
     $scope.tagMaxLength = 20;
+    $scope.someNotes = [];
+
+    $scope.userGroups = {};
 
     $scope.froalaOptions = {
         heightMin: 300,
@@ -52,6 +56,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
     data.getUser()
         .success(function(data) {
             $scope.currentUser = data;
+            $scope.note.isPinned[$scope.currentUser._id] = false;
         })
         .error(function(err) {
             alertToast('An error occurred while loading user details. ' + err.message);
@@ -70,10 +75,27 @@ app.controller('notesController', function($scope, $state, authentication, data)
     data.getNotes()
         .success(function(data) {
             $scope.notes = data.sort(reverseCompareTimestamps);
+            resetSomeNotes();
         })
         .error(function(err) {
             alertToast('An error occurred while loading notes. ' + err.message);
         });
+
+    data.getUserGroups()
+        .success(function(data) {
+            $scope.userGroups = data;
+        })
+        .error(function(err){
+            alertToast('An error occurred while loading groups. ' + err.message);
+        });
+
+    function resetSomeNotes() {
+        $scope.someNotes = [];
+        // for (var i = 0; i < ($scope.notes.length > 10 ? 10 : $scope.notes.length); i++) {
+            for (var i = 0; i < $scope.notes.length; i++) {
+            $scope.someNotes.push($scope.notes[i]);
+        }
+    }
 
     $scope.duplicateNote = function(note) {
 
@@ -87,11 +109,12 @@ app.controller('notesController', function($scope, $state, authentication, data)
         newNote.dateCreated = getCurrentDate();
         newNote.tags = note.tags.slice();
         newNote.colorClass = note.colorClass;
-        newNote.isPinned = note.isPinned;
+        newNote.isPinned = {};
+        newNote.isPinned[$scope.currentUser._id] = note.isPinned[$scope.currentUser._id] || false;
         newNote.isTrashed = note.isTrashed;
         newNote.timestamp = Math.floor(Date.now() / 1000);
 
-        $scope.notes.unshift(newNote);
+        $scope.someNotes.unshift(newNote);
 
         data.addNote(newNote);
 
@@ -99,6 +122,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
             data.getNotes()
                 .success(function(data) {
                     $scope.notes = data.sort(reverseCompareTimestamps);
+                    resetSomeNotes();
                     data.postEvent(newEvent('note_copy', $scope.notes[0])).success(function() {}).error(function (err) {});
                 })
                 .error(function(err) {
@@ -108,14 +132,21 @@ app.controller('notesController', function($scope, $state, authentication, data)
 
     };
 
+    $scope.loadMore = function() {
+        var last = $scope.someNotes.length;
+        // for (var i = last; (last + i) < (last + $scope.notes.length > 10) ? (last + 10) : (last + $scope.notes.length); i++) {
+        //     $scope.someNotes.push($scope.notes[i]);
+        // }
+    }
+
     $scope.pinNote = function(note) {
 
         if (note === null || typeof note !== 'object')
             return;
-
-        note.isPinned = true;
+        note.isPinned[$scope.currentUser._id] = true;
         data.updateNote(note);
         data.postEvent(newEvent('note_pin', note)).success(function() {}).error(function (err) {});
+        $scope.apply();
     };
 
     $scope.pinNoteViaModal = function(note, $index) {
@@ -136,9 +167,10 @@ app.controller('notesController', function($scope, $state, authentication, data)
         if (note === null || typeof note !== 'object')
             return;
 
-        note.isPinned = false;
+        note.isPinned[$scope.currentUser._id] = false;
         data.updateNote(note);
         data.postEvent(newEvent('note_unpin', note)).success(function() {}).error(function (err) {});
+        $scope.apply();
     };
 
     $scope.unpinNoteViaModal = function(note, $index) {
@@ -205,6 +237,10 @@ app.controller('notesController', function($scope, $state, authentication, data)
         if (note === null || typeof note !== 'object')
             return;
 
+        var someNotesIndex = $scope.someNotes.indexOf(note);
+
+        $scope.someNotes.splice(someNotesIndex, 1);
+
         var index = $scope.notes.indexOf(note);
 
         $scope.notes.splice(index, 1);
@@ -237,7 +273,8 @@ app.controller('notesController', function($scope, $state, authentication, data)
         newNote.dateCreated = getCurrentDate();
         newNote.tags = [];
         newNote.colorClass = $scope.colorClasses[8];
-        newNote.isPinned = false;
+        newNote.isPinned = {};
+        newNote.isPinned[$scope.currentUser._id] = false;
         newNote.isTrashed = false;
         newNote.timestamp = Math.floor(Date.now() / 1000);
 
@@ -248,10 +285,11 @@ app.controller('notesController', function($scope, $state, authentication, data)
             data.getNotes()
                 .success(function(data) {
                     $scope.notes = data.sort(reverseCompareTimestamps);
+                    resetSomeNotes();
 
                     setTimeout(function() {
                         $('#note-edit-modal-0').modal('show');
-                        $scope.currentNote = $scope.notes[0];
+                        $scope.currentNote = $scope.someNotes[0];
                     }, 30);
 
                     data.postEvent(newEvent('note_create', $scope.notes[0])).success(function() {}).error(function (err) {});
@@ -353,6 +391,16 @@ app.controller('notesController', function($scope, $state, authentication, data)
             }
         }
 
+        for (var i = 0; i < $scope.someNotes.length; i++) {
+            if (typeof $scope.notes[i].tags === 'undefined')
+                continue;
+
+            var index = $scope.someNotes[i].tags.indexOf(tag);
+            if (index != -1) {
+                $scope.someNotes[i].tags.splice(index, 1);
+            }
+        }
+
         var index = $scope.tags.indexOf(tag);
 
         $scope.tags.splice(index, 1);
@@ -365,10 +413,12 @@ app.controller('notesController', function($scope, $state, authentication, data)
     };
 
     $scope.setCurrentNote = function(note) {
+        alert();
         if (note === null || typeof note !== 'object')
             return;
 
         $scope.currentNote = note;
+        data.postEvent(newEvent('note_open', $scope.currentNote)).success(function() {}).error(function (err) {});
     };
 
     $scope.openEditModalViaViewModal = function(note, $index) {

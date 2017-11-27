@@ -12,50 +12,46 @@
     </div>
     <div class="search">
         <span class="search-icon glyphicon glyphicon-search"></span>
-        <input type="text" placeholder="Search notes..." ng-model="searchString" />
+        <input type="text" placeholder="Search" ng-model="searchString" />
     </div>
     <div class="sidebar-container">
         <ul class="sidebar-nav">
             <li>
-                <a ui-sref="notes.state-notes" class="ripple"> Notes</a>
+                <a ui-sref="notes.state-notes"> Notes</a>
             </li>
             <li>
-                <a ui-sref="notes.state-pin" class="ripple"> Pinned Notes</a>
+                <a ui-sref="notes.state-pin"> Pinned Notes</a>
             </li>
             <li>
-                <a ui-sref="notes.state-trash" class="ripple"> Trash</a>
+                <a ui-sref="notes.state-trash"> Trash</a>
             </li>
         </ul>
         <ul class="sidebar-nav">
             <li>
-                <a ui-sref="notes.state-profile" class="ripple"></span> Profile</a>
+                <a ui-sref="notes.state-profile"></span> User Profile & Stats</a>
             </li>
             <li>
-                <a ui-sref="notes.state-groups" class="ripple"></span> Groups</a>
+                <a ui-sref="notes.state-groups"></span> Groups</a>
             </li>
         </ul>
         <ul class="sidebar-nav">
             <div class="list-header">
                 <div class="list-title">Interests</div>
                 <a class="list-edit-btn" data-toggle="modal" data-target="#tags-edit-modal">
-                    <span class="ripple">EDIT</span>
+                    <span>Add/Remove</span>
                 </a>
             </div>
             <li ng-repeat="tag in tags">
-                <a ui-sref="notes.state-tags" class="ripple" ng-click="setSelectedTags([tag])"><span ng-bind="tag">Loading...</span></a>
+                <a ui-sref="notes.state-tags" ng-click="setSelectedTags([tag])"><span ng-bind="tag">Loading...</span></a>
             </li>
         </ul>
     </div>
 </header>
 <div ui-view id="ui-view">
 </div>
-<div class="page-message page-loading hidden">
-    <span class="fa fa-paperclip page-message-icon"></span>
-    <p class="page-message-text">Loading your notes...</p>
-</div>
 <div class="add-note-btn">
     <div title="Add a new note" class="opt-tooltip add-div">
-        <button class="add-btn ripple-light" ng-click="createNote();">+</button>
+        <button class="add-btn" ng-click="createNote();">+</button>
     </div>
 </div>
 <div class="modal fade-pop" id="tags-edit-modal">

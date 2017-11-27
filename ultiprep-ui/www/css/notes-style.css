@@ -28,16 +28,6 @@ body.modal-open {
 }
 
 
-/* Angular loading bar styles */
-#loading-bar .bar {
-	background: rgba(0, 0, 0, 0.39);
-}
-
-#loading-bar-spinner .spinner-icon {
-	display: none;
-}
-
-
 /* Page and container message styles */
 .hidden {
 	display: none !important;
@@ -379,7 +369,7 @@ body.modal-open {
 
 .search input {
 	text-indent: 32px;
-	font-color: white;
+	color: white;
 	font-size: 1em;
 	width: 90%;
 	margin: 0 auto;
@@ -393,6 +383,7 @@ body.modal-open {
 
 .search input:focus {
 	background: #fff;
+	color: black;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -587,7 +578,7 @@ body.modal-open {
 
 .sidebar-nav .list-header .list-edit-btn {
 	position: absolute;
-	left: 200px;
+	left: 150px;
 	right: auto;
 	border: 0;
 	outline: 0;
@@ -1530,8 +1521,7 @@ hr.profile-hr {
 	outline: none;
 	border: none;
 	border-radius: 3px;
-	color: #2c2c2c;
-	background: rgba(0, 0, 0, 0.1);
+	color: #fff;
 }
 
 .profile-action-btn .fa {
@@ -1541,32 +1531,7 @@ hr.profile-hr {
 .profile-action-btn:hover {
 	text-decoration: none;
 	color: #050505;
-	background: rgba(0, 0, 0, 0.2);
 	cursor: pointer;
-}
-
-.profile-action-btn-danger {
-	background: rgba(255, 0, 0, 0.35);
-}
-
-.profile-action-btn-danger:hover {
-	background: rgba(255, 0, 0, 0.55);
-}
-
-.profile-action-btn-alt {
-	background: rgba(0, 0, 0, 0.15);
-}
-
-.profile-action-btn-alt:hover {
-	background: rgba(0, 0, 0, 0.25);
-}
-
-.profile-action-btn-danger-alt {
-	background: rgba(255, 0, 0, 0.55);
-}
-
-.profile-action-btn-danger-alt:hover {
-	background: rgba(255, 0, 0, 0.75);
 }
 
 /* Profile container, profile header, profile editor responsive styles */

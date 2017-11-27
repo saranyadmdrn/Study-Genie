@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var groupSchema = mongoose.Schema({
-    name: {
+    groupName: {
         type: String
     },
     members: {

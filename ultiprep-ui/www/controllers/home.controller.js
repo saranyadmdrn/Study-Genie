@@ -36,7 +36,6 @@ app.controller('homeController', function($state, authentication) {
                 swal({
                         title: '',
                         text: 'Please wait..',
-                        imageUrl: 'assets/images/animation-loading.gif',
                         timer: 1000,
                         showConfirmButton: false,
                     },

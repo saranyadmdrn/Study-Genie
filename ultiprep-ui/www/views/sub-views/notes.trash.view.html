@@ -1,5 +1,5 @@
 <div class="container notes-container" ng-cloak>
-    <div class="masonry-item note" ng-class="{'note-bg-pinned' : note.isPinned, 'note-bg' : !note.isPinned}" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isTrashed:true} | searchFor:searchString)">
+    <div class="masonry-item note" ng-class="{'note-bg-pinned' : note.isPinned, 'note-bg' : !note.isPinned}" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isTrashed:true} | searchFor:searchString | orderBy: '-isPinned')">
         <div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
             <h3 class="note-title">{{ note.title }}</h3>
             <p class="note-content" froala-view="note.content | noteTilePrettify"></p>

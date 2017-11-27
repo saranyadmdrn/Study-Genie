@@ -33,15 +33,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
             url: '/tags',
             templateUrl: 'views/sub-views/notes.tags.view.html'
         })
+        .state('notes.state-groups', {
+            url: '/groups',
+            templateUrl: 'views/sub-views/notes.groups.view.html',
+        })
         .state('notes.state-profile', {
             url: '/profile',
             templateUrl: 'views/sub-views/notes.profile.view.html',
             controller: 'profileController as vm',
-        })
-        .state('notes.state-groups', {
-            url: '/groups',
-            templateUrl: 'views/sub-views/notes.groups.view.html',
-            controller: 'groupsController as vm',
         });
 
     //  $locationProvider.html5Mode(true);
@@ -127,6 +126,21 @@ app.filter('filterTags', function() {
             for (var i in note.tags) {
                 if (selectedTags.indexOf(note.tags[i]) != -1)
                     return true;
+            }
+
+            return false;
+        });
+    };
+});
+
+app.filter('filterPinned', function() {
+
+    return function(notes, currentUser) {
+
+        return notes.filter(function(note) {
+
+            if (note.isPinned[currentUser._id]) {
+                return true;
             }
 
             return false;

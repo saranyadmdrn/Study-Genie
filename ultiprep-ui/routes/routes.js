@@ -7,6 +7,7 @@ var User = mongoose.model('User');
 var Note = mongoose.model('Note');
 var Tag = mongoose.model('Tag');
 var Event = mongoose.model('Event');
+var Group = mongoose.model('Group');
 
 var router = express.Router();
 
@@ -68,7 +69,8 @@ var signUp = function(req, res) {
         note.dateCreated = getCurrentDate();
         note.tags = ['Personal', 'Miscellaneous'];
         note.colorClass = 'color4';
-        note.isPinned = false;
+        note.isPinned = {};
+        note.isPinned[user._id] = false;
         note.isTrashed = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 0;
         note.author = user._id;
@@ -89,7 +91,8 @@ var signUp = function(req, res) {
         note.dateCreated = getCurrentDate();
         note.tags = ['Miscellaneous'];
         note.colorClass = 'color2';
-        note.isPinned = false;
+        note.isPinned = {};
+        note.isPinned[user._id] = false;
         note.isTrashed = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 1;
         note.author = user._id;
@@ -110,7 +113,8 @@ var signUp = function(req, res) {
         note.dateCreated = getCurrentDate();
         note.tags = [];
         note.colorClass = 'color8';
-        note.isPinned = false;
+        note.isPinned = {};
+        note.isPinned[user._id] = false;
         note.isTrashed = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 2;
         note.author = user._id;
@@ -131,7 +135,8 @@ var signUp = function(req, res) {
         note.dateCreated = getCurrentDate();
         note.tags = [];
         note.colorClass = 'color9';
-        note.isPinned = false;
+        note.isPinned = {};
+        note.isPinned[user._id] = false;
         note.isTrashed = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 3;
         note.author = user._id;
@@ -144,6 +149,19 @@ var signUp = function(req, res) {
                 });
                 return;
             }
+        });
+
+        var group = new Group();
+        group.groupName = "Test group";
+        group.members = [];
+        group.members.push(user._id);
+
+        group.save(function (err) {
+            if (err)
+                res.status(401).json({
+                    message: 'Error while generating groups.'
+                });
+            return;
         });
 
         // Generate a JWT for user login
@@ -391,12 +409,138 @@ var postEvent = function(req, res) {
 
 }
 
+var getUsers = function(req, res) {
+
+    if (!req.payload._id) {
+        res.status(401).json({
+            message: 'UnauthorizedError: Private profile.'
+        });
+        return;
+    }
+
+    var query = { _id: { $ne: req.payload._id } };
+    User.find(query).exec(function(err, users) {
+        if (err)
+            res.status(401).json(err);
+        else {
+            var resUsers = [];
+            var user = {};
+            for (var i = 0; i < users.length; i++) {
+                user = {};
+                user.name = users[i].name;
+                user._id = users[i]._id;
+                resUsers.push(user);
+            }
+            res.status(200).json(resUsers);
+        }
+    });
+
+}
+
+var getUserGroups = function(req, res) {
+
+    if (!req.payload._id) {
+        res.status(401).json({
+            message: 'UnauthorizedError: Private profile.'
+        });
+        return;
+    }
+
+    var query = { members: req.payload._id};
+    Group.find(query).exec(function(err, groups) {
+        if (err)
+            res.status(401).json(err);
+        else {
+            console.log(groups);
+            res.status(200).json(groups);
+        }
+    });
+}
+
+var joinGroup = function(req, res) {
+
+    if (!req.payload._id) {
+        res.status(401).json({
+            message: 'UnauthorizedError: Private profile.'
+        });
+        return;
+    }
+
+    var group = user.body;
+    var query = { _id: group._id};
+
+    delete group._id;
+    delete group.__v;
+
+    group.members.push(req.payload._id);
+
+    Group.findOneAndUpdate(query, group, { upsert: true }).exec(function(err, user) {
+        if (err) {
+            res.status(401).json(err);
+        } else
+            res.status(200).json(user);
+    });
+
+}
+
+var leaveGroup = function(req, res) {
+
+    if (!req.payload._id) {
+        res.status(401).json({
+            message: 'UnauthorizedError: Private profile.'
+        });
+        return;
+    }
+
+    var group = user.body;
+    var query = { _id: group._id};
+
+    delete group._id;
+    delete group.__v;
+
+    group.members.push(req.payload._id);
+
+    var index = group.members.indexOf(req.payload._id);
+    if (index !== -1) {
+        group.members.splice(index, 1);
+    }
+
+    Group.findOneAndUpdate(query, group, { upsert: true }).exec(function(err, user) {
+        if (err) {
+            res.status(401).json(err);
+        } else
+            res.status(200).json(user);
+    });
+
+}
+
+var getAllGroups = function(req, res) {
+
+    if (!req.payload._id) {
+        res.status(401).json({
+            message: 'UnauthorizedError: Private profile.'
+        });
+        return;
+    }
+
+    var query = {};
+
+    Group.find(query).exec(function(err, groups) {
+        if (err) {
+            res.status(401).json(err);
+        } else
+            res.status(200).json(groups);
+    });
+
+}
+
 router.post('/signup', signUp);
 router.post('/login', logIn);
 
 router.post('/event', auth, postEvent);
 
 router.get('/getuser', auth, getUser);
+router.get('/getusers', auth, getUsers);
 router.put('/updateuser', auth, updateUser);
 
 router.get('/getusertags', auth, getUserTags);
@@ -407,5 +551,10 @@ router.get('/getnotes', auth, getNotes);
 router.post('/addnote', auth, addNote);
 router.put('/updatenote', auth, updateNote);
 router.delete('/deletenote/:id', auth, deleteNote);
+
+router.get('/getusergroups', auth, getUserGroups);
+router.get('/getgroups', auth, getAllGroups);
+router.put('/joingroup', auth, joinGroup);
+router.put('/leavegroup', auth, leaveGroup);
 
 module.exports = router;
