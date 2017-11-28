@@ -20,7 +20,7 @@ var noteSchema = mongoose.Schema({
 		type: Object
 	},
 	isTrashed: {
-		type: Boolean
+		type: Object
 	},
 	timestamp: {
 		type: Number

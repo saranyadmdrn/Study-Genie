@@ -115,6 +115,38 @@ app.service('data', function($http, authentication) {
         });
     }
 
+    var getAllGroups = function() {
+        return $http.get('/api/getallgroups', {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+        });
+    }
+
+    var getAllUsers = function() {
+        return $http.get('/api/getusers', {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+        });
+    }
+
+    var joinGroup = function(group) {
+        return $http.get('/api/joingroup', group, {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+        });
+    }
+
+    var leaveGroup = function(group) {
+        return $http.get('/api/leavegroup', group, {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+        });
+    }
+
     return {
         getUser: getUser,
         updateUser: updateUser,
@@ -129,6 +161,10 @@ app.service('data', function($http, authentication) {
         updateNoteContent: updateNoteContent,
         removeNote: removeNote,
         postEvent: postEvent,
-        getUserGroups: getUserGroups
+        getUserGroups: getUserGroups,
+        getAllGroups: getAllGroups,
+        getAllUsers: getAllUsers,
+        joinGroup: joinGroup,
+        leaveGroup: leaveGroup
     };
 });

@@ -1,5 +1,5 @@
 <div class="container notes-container" ng-cloak>
-    <div class="masonry-item note" ng-class="{'note-bg-pinned' : note.isPinned[currentUser._id], 'note-bg' : !note.isPinned[currentUser._id]}" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filter:{isTrashed:false} | searchFor:searchString | filterTags:selectedTags | orderBy: '-isPinned[currentUser._id]')">
+    <div class="masonry-item note" ng-class="{'note-bg-pinned' : note.isPinned[currentUser._id], 'note-bg' : !note.isPinned[currentUser._id]}" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filterNonTrashed:currentUser | searchFor:searchString | filterTags:selectedTags | orderBy: '-isPinned[currentUser._id]')">
         <div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
             <h3 class="note-title">{{ note.title }}</h3>
             <p class="note-content" froala-view="note.content | noteTilePrettify"></p>
@@ -13,8 +13,8 @@
         </div>
         <div class="note-opt">
             <a title="Edit" class="opt-tooltip opt-icon icon-pencil" data-toggle="modal" data-target="#note-edit-modal-{{$index}}" ng-click="setCurrentNote(note)"></a>
-            <a title="Pin" class="opt-tooltip opt-icon icon-archive" ng-hide="note.isPinned[currentUser._id]" ng-click="pinNote(note)"></a>
-            <a title="Unpin" class="opt-tooltip opt-icon icon-unarchive" ng-show="note.isPinned[currentUser._id]" ng-click="unpinNote(note)"></a>
+            <a title="Add to Book" class="opt-tooltip opt-icon icon-archive" ng-hide="note.isPinned[currentUser._id]" ng-click="pinNote(note)"></a>
+            <a title="Remove from Book" class="opt-tooltip opt-icon icon-unarchive" ng-show="note.isPinned[currentUser._id]" ng-click="unpinNote(note)"></a>
             <a class="opt-icon icon-dots menu-popup">
                 <ul>
                     <li ng-click="copyNote(note)">Make a copy</li>
@@ -27,7 +27,7 @@
         <p class="container-message-text">No notes found here</p>
     </div>
 </div>
-<div class="modal fade-pop note-modal note-edit-modal" ng-repeat="note in notes | filter:{isPinned:false} | filter:{isTrashed:false} | searchFor:searchString | filterTags:selectedTags" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
+<div class="modal fade-pop note-modal note-edit-modal" ng-repeat="note in filteredNotes = ((someNotes | ngRepeatFinish:this) | filterNonTrashed:currentUser | searchFor:searchString | filterTags:selectedTags | orderNotes: currentUser)" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
     <div class="modal-dialog">
         <div class="modal-content" ng-class="{'note-bg-pinned' : note.isPinned, 'note-bg' : !note.isPinned}">
             <form class="edit-note-form">
@@ -62,9 +62,17 @@
                                 </li>
                             </ul>
                         </a>
-                        <a title="Pin" class="opt-tooltip opt-icon-lg icon-archive" ng-click="pinNoteViaModal(note, $index)" ng-hide="note.isPinned[currentUser._id]" data-dismiss="modal"></a>
-                        <a title="Unpin" class="opt-tooltip opt-icon-lg icon-unarchive" ng-click="unpinNoteViaModal(note, $index)" ng-show="note.isPinned[currentUser._id]" data-dismiss="modal"></a>
+                        <a title="Add to Book" class="opt-tooltip opt-icon-lg icon-archive" ng-click="pinNoteViaModal(note, $index)" ng-hide="note.isPinned[currentUser._id]" data-dismiss="modal"></a>
+                        <a title="Remove from Book" class="opt-tooltip opt-icon-lg icon-unarchive" ng-click="unpinNoteViaModal(note, $index)" ng-show="note.isPinned[currentUser._id]" data-dismiss="modal"></a>
                         <a title="Delete" class="opt-tooltip opt-icon-lg icon-trash" ng-click="moveNoteToTrashViaModal(note, $index)" data-dismiss="modal"></a>
+                        <a title="Share" class="opt-tooltip opt-icon-lg icon-user tags-popup tooltipstered" ng-show="isAuthor(note)">
+                            <ul>
+                                <li ng-repeat="(key, data) in filteredUsers = ((users | ngRepeatFinish:this) | filterOtherUsers:currentUser)">
+                                    <label ng-click="$event.stopPropagation();">
+                                        <input type="checkbox" ng-checked="checkUserAccess(note, key)" ng-click="changeUserAccess(note, key)" /> {{data}}</label>
+                                </li>
+                            </ul>
+                        </a>
                         <a title="All done" class="opt-tooltip opt-icon-lg icon-check" data-dismiss="modal"></a>
                     </div>
                 </div>
@@ -72,7 +80,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade-pop note-modal note-view-modal" ng-repeat="note in notes | filter:{isPinned[currentUser._id]:false} | filter:{isTrashed:false} | searchFor:searchString | filterTags:selectedTags" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
+<div class="modal fade-pop note-modal note-view-modal" ng-repeat="note in filteredNotes = ((someNotes | ngRepeatFinish:this) | filterNonTrashed:currentUser | searchFor:searchString | filterTags:selectedTags | orderNotes: currentUser)" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
     <div class="modal-dialog">
         <div class="modal-content" ng-class="{'note-bg-pinned' : note.isPinned[currentUser._id], 'note-bg' : !note.isPinned[currentUser._id]}">
             <div class="modal-header">
@@ -93,8 +101,8 @@
                 </div>
                 <div class="note-modal-opt">
                     <a title="Edit" class="opt-tooltip opt-icon-lg icon-pencil" data-toggle="modal" ng-click="openEditModalViaViewModal(note, $index)"></a>
-                    <a title="Pin" class="opt-tooltip opt-icon-lg icon-archive" ng-click="pinNoteViaModal(note, $index)" ng-hide="note.isPinned[currentUser._id]" data-dismiss="modal"></a>
-                    <a title="Unpin" class="opt-tooltip opt-icon-lg icon-unarchive" ng-click="unpinNoteViaModal(note, $index)" ng-show="note.isPinned[currentUser._id]" data-dismiss="modal"></a>
+                    <a title="Add to Book" class="opt-tooltip opt-icon-lg icon-archive" ng-click="pinNoteViaModal(note, $index)" ng-hide="note.isPinned[currentUser._id]" data-dismiss="modal"></a>
+                    <a title="Remove from Book" class="opt-tooltip opt-icon-lg icon-unarchive" ng-click="unpinNoteViaModal(note, $index)" ng-show="note.isPinned[currentUser._id]" data-dismiss="modal"></a>
                     <a title="Delete" class="opt-tooltip opt-icon-lg icon-trash" ng-click="moveNoteToTrashViaModal(note, $index)" data-dismiss="modal"></a>
                     <a title="All done" class="opt-tooltip opt-icon-lg icon-check" data-dismiss="modal"></a>
                 </div>

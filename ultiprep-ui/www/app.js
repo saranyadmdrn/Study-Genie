@@ -122,7 +122,6 @@ app.filter('filterTags', function() {
 
         return notes.filter(function(note) {
 
-            console.log(note.tags);
             for (var i in note.tags) {
                 if (selectedTags.indexOf(note.tags[i]) != -1)
                     return true;
@@ -145,6 +144,97 @@ app.filter('filterPinned', function() {
 
             return false;
         });
+    };
+});
+
+app.filter('filterNonTrashed', function() {
+
+    return function(notes, currentUser) {
+
+        return notes.filter(function(note) {
+
+            if (note.isTrashed[currentUser._id]) {
+                return false;
+            }
+
+            return true;
+        });
+    };
+});
+app.filter('filterOtherUsers', function() {
+
+    return function(users, currentUser) {
+
+        delete users[currentUser._id];
+        return users;
+    };
+});
+app.filter('filterTrashed', function() {
+
+    return function(notes, currentUser) {
+
+        return notes.filter(function(note) {
+
+            if (note.isTrashed[currentUser._id]) {
+                return true;
+            }
+
+            return false;
+        });
+    };
+});
+
+app.filter('orderNotes', function() {
+
+    return function (notes, currentUser) {
+
+        var tempA, tempB;
+
+        var array = [];
+        for (var i = 0; i < notes.length; i++) {
+            array.push(notes[i]);
+        }
+
+        array.sort(function (a, b) {
+            tempA = a.isPinned[currentUser._id];
+            if (tempA == undefined) {
+                tempA = false;
+            }
+            tempB = b.isPinned[currentUser._id];
+            if (tempB == undefined) {
+                tempB = false;
+            }
+            return tempB - tempA;
+        });
+
+        return array;
+    };
+});
+
+app.filter('orderGroups', function() {
+
+    return function (groups, currentUser) {
+
+        var tempA, tempB;
+
+        var array = [];
+        for (var i = 0; i < groups.length; i++) {
+            array.push(groups[i]);
+        }
+
+        array.sort(function (a, b) {
+            tempA = a.members.indexOf(currentUser._id);
+            if (tempA == undefined) {
+                tempA = false;
+            }
+            tempB = b.members.indexOf(currentUser._id);
+            if (tempB == undefined) {
+                tempB = false;
+            }
+            return tempB - tempA;
+        });
+
+        return array;
     };
 });
 

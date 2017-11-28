@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="container notes-container" ng-cloak>
+    <div class="masonry-item note" ng-class="getGroupClass(group)" ng-repeat="group in filteredGroups = ((groups | ngRepeatFinish:this) | orderGroups: currentUser)">
+        <div class="note-main">
+            <h3 class="note-title">{{ group.groupName }}</h3>
+            <p class="note-content" froala-view="note.content | noteTilePrettify"></p>
+        </div>
+        <div class="group-members">
+            <ul>
+                <li ng-repeat="member in group.members">
+                    {{users[member]}}
+                </li>
+            </ul>
+        </div>
+        <div class="note-opt">
+            <a title="Join Group" class="opt-tooltip opt-icon icon-archive" ng-hide="isMember(group)" ng-click="joinGroup(group)"></a>
+            <a title="Leave Group" class="opt-tooltip opt-icon icon-unarchive" ng-show="isMember(group)" ng-click="leaveGroup(group)"></a>
+        </div>
+    </div>
+</div>
+<div class="modal fade-pop note-modal note-edit-modal" ng-repeat="group in filteredGroups = ((groups | ngRepeatFinish:this))" id="group-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
+    <div class="modal-dialog">
+        <div class="modal-content note-bg">
+            <form class="edit-note-form">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="note-title">{{ group.groupName }}</h3>
+                </div>
+                <div class="note-modal-opt">
+                    <a title="Add/Remove members">
+                        <ul>
+                            <li ng-repeat="member in group.members">
+                                <label ng-click="$event.stopPropagation();">
+                                    <input type="checkbox" ng-checked="checkGroupMember(group, member)" ng-click="changeGroupMember(group, member)" /> {{users[member]}}</label>
+                            </li>
+                        </ul>
+                    </a>
+                </div>
+                <div class="modal-footer">
+                    <div class="note-modal-opt">
+                        <a title="All done" class="opt-tooltip opt-icon-lg icon-check" data-dismiss="modal"></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

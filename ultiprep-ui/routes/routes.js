@@ -71,7 +71,8 @@ var signUp = function(req, res) {
         note.colorClass = 'color4';
         note.isPinned = {};
         note.isPinned[user._id] = false;
-        note.isTrashed = false;
+        note.isTrashed = {};
+        note.isTrashed[user._id] = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 0;
         note.author = user._id;
         note.public = true;
@@ -93,7 +94,8 @@ var signUp = function(req, res) {
         note.colorClass = 'color2';
         note.isPinned = {};
         note.isPinned[user._id] = false;
-        note.isTrashed = false;
+        note.isTrashed = {};
+        note.isTrashed[user._id] = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 1;
         note.author = user._id;
         note.public = true;
@@ -115,7 +117,8 @@ var signUp = function(req, res) {
         note.colorClass = 'color8';
         note.isPinned = {};
         note.isPinned[user._id] = false;
-        note.isTrashed = false;
+        note.isTrashed = {};
+        note.isTrashed[user._id] = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 2;
         note.author = user._id;
         note.public = true;
@@ -137,7 +140,8 @@ var signUp = function(req, res) {
         note.colorClass = 'color9';
         note.isPinned = {};
         note.isPinned[user._id] = false;
-        note.isTrashed = false;
+        note.isTrashed = {};
+        note.isTrashed[user._id] = false;
         note.timestamp = Math.floor(Date.now() / 1000) + 3;
         note.author = user._id;
         note.public = false;
@@ -359,6 +363,7 @@ var updateNote = function(req, res) {
     var query = { _id: note._id };
     delete note._id;
     delete note.__v;
+    console.log(note);
     Note.findOneAndUpdate(query, note, { upsert: true }).exec(function(err, note) {
         if (err)
             res.status(401).json(err);
@@ -418,20 +423,16 @@ var getUsers = function(req, res) {
         return;
     }
 
-    var query = { _id: { $ne: req.payload._id } };
+    var query = { };
     User.find(query).exec(function(err, users) {
         if (err)
             res.status(401).json(err);
         else {
-            var resUsers = [];
             var user = {};
             for (var i = 0; i < users.length; i++) {
-                user = {};
-                user.name = users[i].name;
-                user._id = users[i]._id;
-                resUsers.push(user);
+                user[users[i]._id.toString()] = users[i].name;
             }
-            res.status(200).json(resUsers);
+            res.status(200).json(user);
         }
     });
 
@@ -451,7 +452,6 @@ var getUserGroups = function(req, res) {
         if (err)
             res.status(401).json(err);
         else {
-            console.log(groups);
             res.status(200).json(groups);
         }
     });
@@ -553,7 +553,7 @@ router.put('/updatenote', auth, updateNote);
 router.delete('/deletenote/:id', auth, deleteNote);
 
 router.get('/getusergroups', auth, getUserGroups);
-router.get('/getgroups', auth, getAllGroups);
+router.get('/getallgroups', auth, getAllGroups);
 router.put('/joingroup', auth, joinGroup);
 router.put('/leavegroup', auth, leaveGroup);
 
