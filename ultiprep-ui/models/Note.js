@@ -13,9 +13,6 @@ var noteSchema = mongoose.Schema({
 	tags: {
 		type: [String]
 	},
-	colorClass: {
-		type: String
-	},
 	isPinned: {
 		type: Object
 	},

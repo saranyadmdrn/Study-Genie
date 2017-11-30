@@ -24,12 +24,8 @@
             </a>
         </div>
     </div>
-    <div class="container-message" ng-show="filteredNotes.length === 0">
-        <p class="container-message-text">
-            No notes here. Click on + to add notes</p>
-    </div>
 </div>
-<div class="modal fade-pop note-modal note-edit-modal" ng-repeat="note in notes | filterNonTrashed:currentUser | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
+<div class="modal fade-pop note-modal note-edit-modal" ng-repeat="note in notes | filterNonTrashed:currentUser | searchFor:searchString | orderNotes: currentUser" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
     <div class="modal-dialog">
         <div class="modal-content note-bg">
             <form class="edit-note-form">
@@ -82,7 +78,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade-pop note-modal note-view-modal" ng-repeat="note in notes | filterNonTrashed:currentUser | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
+<div class="modal fade-pop note-modal note-view-modal" ng-repeat="note in notes | filterNonTrashed:currentUser | searchFor:searchString | orderNotes: currentUser" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
     <div class="modal-dialog">
         <div class="modal-content note-bg">
             <div class="modal-header">
@@ -110,5 +106,10 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="add-note-btn">
+    <div title="Add a new note" class="opt-tooltip add-div">
+        <button class="add-btn" ng-click="createNote();">+</button>
     </div>
 </div>

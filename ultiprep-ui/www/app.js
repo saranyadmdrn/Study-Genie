@@ -98,14 +98,30 @@ app.filter('searchFor', function() {
             return arr;
         }
 
+        var index = elasticlunr(function () {
+            this.addField('title');
+            this.addField('content');
+            this.addField('tags');
+            this.setRef('_id');
+        });
+
         var result = [];
 
-        searchString = searchString.toLowerCase();
         angular.forEach(arr, function(item) {
-            if (item.title.toLowerCase().indexOf(searchString) !== -1 ||
-                item.content.toLowerCase().indexOf(searchString) !== -1) {
-                result.push(item);
-            }
+            index.addDoc(item);
+        });
+
+        var searchResults = index.search(searchString, {
+            fields: {
+                title: {boost: 2},
+                content: {boost: 2},
+                tags: {boost: 3}
+            },
+            bool: "OR"
+        });
+
+        angular.forEach(searchResults, function(item) {
+            result.push(item.doc);
         });
 
         return result;

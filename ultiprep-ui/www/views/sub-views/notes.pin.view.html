@@ -1,5 +1,5 @@
 <div class="container notes-container" ng-cloak>
-    <div class="masonry-item note note-bg-pinned" ng-click="onClick(note)" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filterPinned:currentUser | filterNonTrashed:currentUser | searchFor:searchString | orderBy: currentUser)">
+    <div class="masonry-item note note-bg-pinned" ng-click="onClick(note)" ng-repeat="note in filteredNotes = ((notes | ngRepeatFinish:this) | filterPinned:currentUser | filterNonTrashed:currentUser | searchFor:searchString | orderNotes: currentUser)">
         <div class="note-main" data-toggle="modal" data-target="#note-view-modal-{{$index}}">
             <h3 class="note-title">{{ note.title }}</h3>
             <p class="note-content" froala-view="note.content | noteTilePrettify"></p>
@@ -27,7 +27,7 @@
         <p class="container-message-text">No notes here</p>
     </div>
 </div>
-<div class="modal fade-pop note-modal note-edit-modal" ng-repeat="note in notes | filterPinned:currentUser | filterNonTrashed:currentUser | searchFor:searchString" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
+<div class="modal fade-pop note-modal note-edit-modal" ng-repeat="note in notes | filterPinned:currentUser | filterNonTrashed:currentUser | searchFor:searchString | orderNotes: currentUser" id="note-edit-modal-{{$index}}" role="dialog" edit-modals-loaded-directive>
     <div class="modal-dialog">
         <div class="modal-content" ng-class="{'note-bg-pinned' : note.isPinned[currentUser._id], 'note-bg' : !note.isPinned[currentUser._id]}">
             <form class="edit-note-form">
@@ -79,7 +79,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade-pop note-modal note-view-modal" ng-repeat="note in notes | filterPinned:currentUser | filterNonTrashed:currentUser | searchFor:searchString" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
+<div class="modal fade-pop note-modal note-view-modal" ng-repeat="note in notes | filterPinned:currentUser | filterNonTrashed:currentUser | searchFor:searchString | orderNotes: currentUser" id="note-view-modal-{{$index}}" role="dialog" view-modals-loaded-directive>
     <div class="modal-dialog">
         <div class="modal-content" ng-class="{'note-bg-pinned' : note.isPinned[currentUser._id], 'note-bg' : !note.isPinned[currentUser._id]}">
             <div class="modal-header">
@@ -106,5 +106,10 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="add-note-btn">
+    <div title="Add a new note" class="opt-tooltip add-div">
+        <button class="add-btn" ng-click="createNote();">+</button>
     </div>
 </div>

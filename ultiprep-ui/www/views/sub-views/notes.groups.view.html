@@ -6,6 +6,7 @@
         </div>
         <div class="group-members">
             <ul>
+                <li ng-show="isMember(group)">You are a member</li>
                 <li ng-repeat="member in group.members">
                     {{users[member]}}
                 </li>

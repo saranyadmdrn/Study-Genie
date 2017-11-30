@@ -2,10 +2,6 @@ var app = angular.module('ultiprep');
 
 app.controller('notesController', function($scope, $state, authentication, data) {
 
-    $scope.colorClasses = [
-        'color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9', 'color10'
-    ];
-
     $scope.tags = [];
     $scope.selectedTags = [];
 
@@ -16,7 +12,6 @@ app.controller('notesController', function($scope, $state, authentication, data)
         content: '',
         dateCreated: '',
         tags: [],
-        colorClass: '',
         isPinned: {}
         ,
         isTrashed: {},
@@ -136,7 +131,6 @@ app.controller('notesController', function($scope, $state, authentication, data)
         newNote.content = note.content;
         newNote.dateCreated = getCurrentDate();
         newNote.tags = note.tags.slice();
-        newNote.colorClass = note.colorClass;
         newNote.isPinned = {};
         newNote.isPinned[$scope.currentUser._id] = note.isPinned[$scope.currentUser._id] || false;
         newNote.isTrashed = {};
@@ -311,9 +305,8 @@ app.controller('notesController', function($scope, $state, authentication, data)
         newNote.content = '';
         newNote.dateCreated = getCurrentDate();
         newNote.tags = [];
-        newNote.colorClass = $scope.colorClasses[8];
         newNote.isPinned = {};
-        newNote.isPinned[$scope.currentUser._id] = false;
+        newNote.isPinned[$scope.currentUser._id] = true;
         newNote.isTrashed = {};
         newNote.isTrashed[$scope.currentUser._id] = false;
         newNote.timestamp = Math.floor(Date.now() / 1000);
@@ -321,24 +314,25 @@ app.controller('notesController', function($scope, $state, authentication, data)
         newNote.author = $scope.currentUser._id;
 
         $scope.notes.unshift(newNote);
-        $scope.someNotes.unshift(newNote);
+        data.addNote(newNote);
 
         setTimeout(function() {
-            $('#note-edit-modal-0').modal('show');
-            $scope.currentNote = $scope.someNotes[0];
+            data.getNotes()
+                .success(function(data) {
+                    $scope.notes = data.sort(reverseCompareTimestamps);
+                    resetSomeNotes();
+                    console.log($scope.notes[0]);
+                    $scope.currentNote = $scope.notes[0];
+                    setTimeout(function() {
+                        $('#note-edit-modal-0').modal('show');
+                    }, 30);
+
+                    data.postEvent(newEvent('note_create', $scope.notes[0])).success(function() {}).error(function (err) {});
+                })
+                .error(function(err) {
+                    alertToast('Could not delete note. ' + err.message);
+                });
         }, 300);
-
-        data.postEvent(newEvent('note_create', $scope.notes[0])).success(function() {}).error(function (err) {});
-    };
-
-    $scope.setNoteColor = function(note, colorClass) {
-
-        if (note === null || colorClass === null || typeof note !== 'object' || typeof colorClass !== 'string')
-            return;
-
-        note.colorClass = colorClass;
-        data.updateNote(note);
-        data.postEvent(newEvent('note_update', note)).success(function() {}).error(function (err) {});
     };
 
     $scope.checkNoteTag = function(note, tag) {
@@ -512,20 +506,8 @@ app.controller('notesController', function($scope, $state, authentication, data)
         $('.note-edit-modal').off('hidden.bs.modal');
         $('.note-edit-modal').on('hidden.bs.modal', function() {
 
-            console.log($scope.currentNote);
             data.updateNote($scope.currentNote);
             data.postEvent(newEvent('note_update', $scope.currentNote)).success(function() {}).error(function (err) {});
-
-            setTimeout(function() {
-                data.getNotes()
-                    .success(function(newData) {
-                        $scope.notes = newData.sort(reverseCompareTimestamps);
-                        resetSomeNotes();
-                    })
-                    .error(function(err) {
-                        alertToast('Could not delete note. ' + err.message);
-                    });
-            }, 300);
             $scope.currentNote = null;
         });
     };
