@@ -799,6 +799,14 @@ body.modal-open {
 	text-align: left;
 }
 
+.group-members ul {
+	list-style-type: none;
+	margin-left: 12px;
+	margin-right: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
 .note-tags ul {
 	list-style-type: none;
 	margin: 0;
@@ -1738,13 +1746,20 @@ hr.profile-hr {
 	background-image: url('../assets/icons/terminal.svg');
 }
 
+.non-member {
+	background: #FDFDFD !important;
+}
+.member {
+	background: #7DCCDF !important;
+}
+
 
 /* Note colors */
 .note-bg {
-	background: #BEB095 !important;
+	background: #FDFDFD !important;
 }
 .note-bg-pinned {
-	background: #EFCA8B !important;
+	background: #7DCCDF !important;
 }
 .color1 {
 	background: #f36a4e !important;

@@ -50,7 +50,7 @@ var signUp = function(req, res) {
         // Save some default tags
         var tag = new Tag();
         tag.author = user._id;
-        tag.tags = ['Inspiration', 'Personal', 'Work', 'Miscellaneous'];
+        tag.tags = ['Java', 'Javascript', 'SQL', 'MongoDB'];
         tag.save(function(err) {
             if (err) {
                 res.status(401).json({
@@ -61,98 +61,98 @@ var signUp = function(req, res) {
         });
 
         // Save some default notes
-        var note;
-
-        note = new Note();
-        note.title = '';
-        note.content = '<p>Easily identify & organize your notes with colors and tags.</p>';
-        note.dateCreated = getCurrentDate();
-        note.tags = ['Personal', 'Miscellaneous'];
-        note.colorClass = 'color4';
-        note.isPinned = {};
-        note.isPinned[user._id] = false;
-        note.isTrashed = false;
-        note.timestamp = Math.floor(Date.now() / 1000) + 0;
-        note.author = user._id;
-        note.public = true;
-        note.contibutors = [];
-        note.save(function(err) {
-            if (err) {
-                res.status(401).json({
-                    message: 'Error while generating user notes.'
-                });
-                return;
-            }
-        });
-
-        note = new Note();
-        note.title = 'Everything at one place';
-        note.content = '<p>Find your notes from any device - laptop, tablet, smartphone.</p><p>Capture a note once, and access it from anywhere.</p>';
-        note.dateCreated = getCurrentDate();
-        note.tags = ['Miscellaneous'];
-        note.colorClass = 'color2';
-        note.isPinned = {};
-        note.isPinned[user._id] = false;
-        note.isTrashed = false;
-        note.timestamp = Math.floor(Date.now() / 1000) + 1;
-        note.author = user._id;
-        note.public = true;
-        note.contibutors = [];
-        note.save(function(err) {
-            if (err) {
-                res.status(401).json({
-                    message: 'Error while generating user notes.'
-                });
-                return;
-            }
-        });
-
-        note = new Note();
-        note.title = '';
-        note.content = '<p>Done with a note?</p><p>Just send to the <em>archive</em>, where you can always find it later.</p>';
-        note.dateCreated = getCurrentDate();
-        note.tags = [];
-        note.colorClass = 'color8';
-        note.isPinned = {};
-        note.isPinned[user._id] = false;
-        note.isTrashed = false;
-        note.timestamp = Math.floor(Date.now() / 1000) + 2;
-        note.author = user._id;
-        note.public = true;
-        note.contibutors = [];
-        note.save(function(err) {
-            if (err) {
-                res.status(401).json({
-                    message: 'Error while generating user notes.'
-                });
-                return;
-            }
-        });
-
-        note = new Note();
-        note.title = 'Welcome to ng-notes';
-        note.content = '<p>Capture your ideas effortlessly with NGN. <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f606.svg);">&nbsp;</span><br><br>To add a new note, click on the <strong>+</strong> icon below.</p>';
-        note.dateCreated = getCurrentDate();
-        note.tags = [];
-        note.colorClass = 'color9';
-        note.isPinned = {};
-        note.isPinned[user._id] = false;
-        note.isTrashed = false;
-        note.timestamp = Math.floor(Date.now() / 1000) + 3;
-        note.author = user._id;
-        note.public = false;
-        note.contibutors = [];
-        note.save(function(err) {
-            if (err) {
-                res.status(401).json({
-                    message: 'Error while generating user notes.'
-                });
-                return;
-            }
-        });
+        // var note;
+        //
+        // note = new Note();
+        // note.title = '';
+        // note.content = '<p>Easily identify & organize your notes with colors and tags.</p>';
+        // note.dateCreated = getCurrentDate();
+        // note.tags = ['Personal', 'Miscellaneous'];
+        // note.isPinned = {};
+        // note.isPinned[user._id] = false;
+        // note.isTrashed = {};
+        // note.isTrashed[user._id] = false;
+        // note.timestamp = Math.floor(Date.now() / 1000) + 0;
+        // note.author = user._id;
+        // note.public = true;
+        // note.contibutors = [];
+        // note.save(function(err) {
+        //     if (err) {
+        //         res.status(401).json({
+        //             message: 'Error while generating user notes.'
+        //         });
+        //         return;
+        //     }
+        // });
+        //
+        // note = new Note();
+        // note.title = 'Everything at one place';
+        // note.content = '<p>Find your notes from any device - laptop, tablet, smartphone.</p><p>Capture a note once, and access it from anywhere.</p>';
+        // note.dateCreated = getCurrentDate();
+        // note.tags = ['Miscellaneous'];
+        // note.isPinned = {};
+        // note.isPinned[user._id] = false;
+        // note.isTrashed = {};
+        // note.isTrashed[user._id] = false;
+        // note.timestamp = Math.floor(Date.now() / 1000) + 1;
+        // note.author = user._id;
+        // note.public = true;
+        // note.contibutors = [];
+        // note.save(function(err) {
+        //     if (err) {
+        //         res.status(401).json({
+        //             message: 'Error while generating user notes.'
+        //         });
+        //         return;
+        //     }
+        // });
+        //
+        // note = new Note();
+        // note.title = '';
+        // note.content = '<p>Done with a note?</p><p>Just send to the <em>archive</em>, where you can always find it later.</p>';
+        // note.dateCreated = getCurrentDate();
+        // note.tags = [];
+        // note.isPinned = {};
+        // note.isPinned[user._id] = false;
+        // note.isTrashed = {};
+        // note.isTrashed[user._id] = false;
+        // note.timestamp = Math.floor(Date.now() / 1000) + 2;
+        // note.author = user._id;
+        // note.public = true;
+        // note.contibutors = [];
+        // note.save(function(err) {
+        //     if (err) {
+        //         res.status(401).json({
+        //             message: 'Error while generating user notes.'
+        //         });
+        //         return;
+        //     }
+        // });
+        //
+        // note = new Note();
+        // note.title = 'Welcome to ng-notes';
+        // note.content = '<p>Capture your ideas effortlessly with NGN. <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f606.svg);">&nbsp;</span><br><br>To add a new note, click on the <strong>+</strong> icon below.</p>';
+        // note.dateCreated = getCurrentDate();
+        // note.tags = [];
+        // note.isPinned = {};
+        // note.isPinned[user._id] = false;
+        // note.isTrashed = {};
+        // note.isTrashed[user._id] = false;
+        // note.timestamp = Math.floor(Date.now() / 1000) + 3;
+        // note.author = user._id;
+        // note.public = false;
+        // note.contibutors = [];
+        // note.save(function(err) {
+        //     if (err) {
+        //         res.status(401).json({
+        //             message: 'Error while generating user notes.'
+        //         });
+        //         return;
+        //     }
+        // });
 
         var group = new Group();
-        group.groupName = "Test group";
+        group.groupName = "Adaptive Web";
         group.members = [];
         group.members.push(user._id);
 
@@ -359,6 +359,7 @@ var updateNote = function(req, res) {
     var query = { _id: note._id };
     delete note._id;
     delete note.__v;
+    console.log(note);
     Note.findOneAndUpdate(query, note, { upsert: true }).exec(function(err, note) {
         if (err)
             res.status(401).json(err);
@@ -418,20 +419,16 @@ var getUsers = function(req, res) {
         return;
     }
 
-    var query = { _id: { $ne: req.payload._id } };
+    var query = { };
     User.find(query).exec(function(err, users) {
         if (err)
             res.status(401).json(err);
         else {
-            var resUsers = [];
             var user = {};
             for (var i = 0; i < users.length; i++) {
-                user = {};
-                user.name = users[i].name;
-                user._id = users[i]._id;
-                resUsers.push(user);
+                user[users[i]._id.toString()] = users[i].name;
             }
-            res.status(200).json(resUsers);
+            res.status(200).json(user);
         }
     });
 
@@ -451,7 +448,6 @@ var getUserGroups = function(req, res) {
         if (err)
             res.status(401).json(err);
         else {
-            console.log(groups);
             res.status(200).json(groups);
         }
     });
@@ -553,7 +549,7 @@ router.put('/updatenote', auth, updateNote);
 router.delete('/deletenote/:id', auth, deleteNote);
 
 router.get('/getusergroups', auth, getUserGroups);
-router.get('/getgroups', auth, getAllGroups);
+router.get('/getallgroups', auth, getAllGroups);
 router.put('/joingroup', auth, joinGroup);
 router.put('/leavegroup', auth, leaveGroup);
 

@@ -13,14 +13,11 @@ var noteSchema = mongoose.Schema({
 	tags: {
 		type: [String]
 	},
-	colorClass: {
-		type: String
-	},
 	isPinned: {
 		type: Object
 	},
 	isTrashed: {
-		type: Boolean
+		type: Object
 	},
 	timestamp: {
 		type: Number

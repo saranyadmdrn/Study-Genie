@@ -25,7 +25,7 @@ body {
 /* Header */
 .header {
 	width: 100%;
-	background: #fac832;
+	background: #AF0E3C;
 	padding: 8px 0 10px 0;
 	position: fixed;
 	top: 0;
@@ -52,7 +52,7 @@ body {
 .brand a {
 	text-decoration: none;
 	outline: 0;
-	color: #111;
+	color: #FFFFFF;
 	transition: .3s;
 }
 
