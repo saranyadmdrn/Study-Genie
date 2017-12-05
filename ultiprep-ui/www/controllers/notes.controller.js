@@ -15,7 +15,7 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
         isPinned: {}
         ,
         isTrashed: {},
-        timestamp: 0,
+        timestamp: new Date(),
         author: ''
     };
 
@@ -144,7 +144,7 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
         newNote.isPinned[$scope.currentUser._id] = note.isPinned[$scope.currentUser._id] || false;
         newNote.isTrashed = {};
         newNote.isTrashed[$scope.currentUser._id] = note.isTrashed[$scope.currentUser._id] || false;
-        newNote.timestamp = Math.floor(Date.now() / 1000);
+        newNote.timestamp = new Date();
 
         $scope.someNotes.unshift(newNote);
 
@@ -318,7 +318,7 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
         newNote.isPinned[$scope.currentUser._id] = true;
         newNote.isTrashed = {};
         newNote.isTrashed[$scope.currentUser._id] = false;
-        newNote.timestamp = Math.floor(Date.now() / 1000);
+        newNote.timestamp = new Date();
         newNote.contributors = [];
         newNote.author = $scope.currentUser._id;
 

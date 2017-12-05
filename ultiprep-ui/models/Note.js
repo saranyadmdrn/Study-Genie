@@ -20,7 +20,7 @@ var noteSchema = mongoose.Schema({
 		type: Object
 	},
 	timestamp: {
-		type: Number
+		type: Date
 	},
 	author: {
 		type: String
