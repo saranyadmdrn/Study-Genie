@@ -164,7 +164,7 @@ app.service('data', function($http, authentication) {
     }
 
     var getRecommendedNotes = function (userId) {
-        return $http.get('http://ec2-35-167-193-198.us-west-2.compute.amazonaws.com:8082/recommendedNotes?name=' + userId, {
+        return $http.get('http://localhost:8082/recommendedNotes?name=' + userId, {
             headers: {
                 Authorization: 'Bearer ' + authentication.getToken()
             }
