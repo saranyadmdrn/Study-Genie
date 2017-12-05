@@ -101,8 +101,8 @@ app.controller('profileController', function($scope, $state, authentication, dat
         });
 
     data.getFavoriteTags()
-        .success(function() {
-
+        .success(function(data) {
+            console.log(data);
             var randomScalingFactor = function() {
                 return Math.round(Math.random() * 100);
             };

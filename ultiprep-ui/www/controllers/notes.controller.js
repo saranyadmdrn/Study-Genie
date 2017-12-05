@@ -327,8 +327,8 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
 
         setTimeout(function() {
             data.getNotes()
-                .success(function(data) {
-                    $scope.notes = data.sort(reverseCompareTimestamps);
+                .success(function(newData) {
+                    $scope.notes = newData.sort(reverseCompareTimestamps);
                     resetSomeNotes();
                     console.log($scope.notes[0]);
                     $scope.currentNote = $scope.notes[0];
