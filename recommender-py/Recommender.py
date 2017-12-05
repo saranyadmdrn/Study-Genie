@@ -44,6 +44,7 @@ def recommendedNotes():
 
   users = mongo.db.events.distinct('user')
   notes = mongo.db.events.distinct('data._id')
+  notesResult = []
   data = np.zeros((len(users), len(notes)))
   for i in result:
     print "fusgukfgsdlfgkfgdls"
@@ -59,7 +60,10 @@ def recommendedNotes():
 
   user_similarity = 1 - user_similarity
   print user_similarity
-  user_prediction = predict(data,user_similarity)
+  try:
+    user_prediction = predict(data,user_similarity)
+  except ValueError as e:
+    return jsonify({'result' : notesResult})
   print "prediction"
   
   prediction = np.argsort(-user_prediction[users.index(name)])
@@ -68,7 +72,7 @@ def recommendedNotes():
 
   print result
 
-  notes = []
+  
 
   for i in result:
     print i
@@ -76,9 +80,9 @@ def recommendedNotes():
     if n.count() > 0:
       json = json_util.dumps(n)
       print json
-      notes.append(json)
-  print notes
-  return jsonify({'result' : notes})
+      notesResult.append(json)
+  print notesResult
+  return jsonify({'result' : notesResult})
 
 
 
