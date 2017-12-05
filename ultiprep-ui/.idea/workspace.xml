@@ -59,14 +59,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notes.controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="notes.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/controllers/notes.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="379" column="35" lean-forward="false" selection-start-line="379" selection-start-column="35" selection-end-line="379" selection-end-column="35" />
+            <state relative-caret-position="253">
+              <caret line="370" column="64" lean-forward="true" selection-start-line="370" selection-start-column="64" selection-end-line="370" selection-end-column="64" />
               <folding>
                 <marker date="1512514610745" expanded="true" signature="2001:2358" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/db.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -212,6 +222,11 @@
             <path>
               <item name="ultiprep-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="ultiprep-ui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ultiprep-ui" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ultiprep-ui" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ultiprep-ui" type="b2602c69:ProjectViewProjectNode" />
@@ -378,12 +393,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1511463905693</updated>
-      <workItem from="1511463908982" duration="76429000" />
+      <workItem from="1511463908982" duration="77117000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76429000" />
+    <option name="totallyTimeSpent" value="77117000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -484,14 +499,6 @@
           <folding>
             <element signature="n#!!doc" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -798,11 +805,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/controllers/notes.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="379" column="35" lean-forward="false" selection-start-line="379" selection-start-column="35" selection-end-line="379" selection-end-column="35" />
+        <state relative-caret-position="253">
+          <caret line="370" column="64" lean-forward="true" selection-start-line="370" selection-start-column="64" selection-end-line="370" selection-end-column="64" />
           <folding>
             <marker date="1512514610745" expanded="true" signature="2001:2358" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
