@@ -486,6 +486,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
 
     $scope.setSelectedTags = function(arr) {
         $scope.selectedTags = arr;
+        data.postEvent(newEvent('tag_open', arr[0])).success(function() {}).error(function (err) {});
     };
 
     $scope.setCurrentNote = function(note) {
@@ -530,7 +531,7 @@ app.controller('notesController', function($scope, $state, authentication, data)
         event.type = type;
         event.data = data;
         event.dateCreated = getCurrentDate();
-        event.timeStamp = Math.floor(Date.now() / 1000) + 0;
+        event.timeStamp = new Date();
 
         return event;
     };

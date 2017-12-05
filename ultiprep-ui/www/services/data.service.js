@@ -147,6 +147,22 @@ app.service('data', function($http, authentication) {
         });
     }
 
+    var getUsageData = function() {
+        return $http.get('/api/usage', {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+        });
+    }
+
+    var getFavoriteTags = function () {
+        return $http.get('/api/favoritetags', {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+        });
+    }
+
     return {
         getUser: getUser,
         updateUser: updateUser,
@@ -165,6 +181,8 @@ app.service('data', function($http, authentication) {
         getAllGroups: getAllGroups,
         getAllUsers: getAllUsers,
         joinGroup: joinGroup,
-        leaveGroup: leaveGroup
+        leaveGroup: leaveGroup,
+        getUsageData: getUsageData,
+        getFavoriteTags: getFavoriteTags
     };
 });

@@ -1,4 +1,4 @@
-var app = angular.module('ultiprep', ['froala', 'ui.router', 'angular-loading-bar']);
+var app = angular.module('ultiprep', ['froala', 'ui.router', 'angular-loading-bar', 'chart.js']);
 
 app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
 

@@ -2,6 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var jwt = require('express-jwt');
 var mongoose = require('mongoose');
+var moment = require('moment');
 
 var User = mongoose.model('User');
 var Note = mongoose.model('Note');
@@ -530,6 +531,137 @@ var getAllGroups = function(req, res) {
 
 }
 
+var getUsageData = function(req, res) {
+
+    if (!req.payload._id) {
+        res.status(401).json({
+            message: 'UnauthorizedError: Private profile.'
+        });
+        return;
+    }
+
+    var query = {};
+
+    getUserUsage(req.payload._id, res);
+
+}
+
+function getUserUsage(id, res) {
+    var userUsageQueryResults = {
+        earlyMorning: 0,
+        morning: 0,
+        noon: 0,
+        evening: 0,
+        night: 0
+    };
+
+    var othersUsageQueryResults = {
+        earlyMorning: 0,
+        morning: 0,
+        noon: 0,
+        evening: 0,
+        night: 0,
+        count: 0
+    };
+
+    Event.find({ 'user': id }, function(err, userEvents) {
+        if (err)
+            res.status(401).json(err);
+        else {
+
+            Event.find({ 'user': { $ne: id } }, function(err, otherEvents) {
+                if (err)
+                    res.status(401).json(err);
+                else {
+                    User.count().exec(function(err, count) {
+
+                        for (var i = userEvents.length - 1; i >= 0; i--) {
+                            var currentTime= moment(userEvents[i].timeStamp, "HH:mm a");
+
+                            if (currentTime.isBetween(moment('00:00a', "HH:mm a"), moment('05:59a', "HH:mm a"))) {
+                                userUsageQueryResults.earlyMorning++;
+                            } else if (currentTime.isBetween(moment('06:00a', "HH:mm a"), moment('10:59a', "HH:mm a"))) {
+                                userUsageQueryResults.morning++;
+                            } else if (currentTime.isBetween(moment('11:00a', "HH:mm a"), moment('03:59p', "HH:mm a"))) {
+                                userUsageQueryResults.noon++;
+                            } else if (currentTime.isBetween(moment('04:00p', "HH:mm a"), moment('07:59p', "HH:mm a"))) {
+                                userUsageQueryResults.evening++;
+                            } else if (currentTime.isBetween(moment('08:00p', "HH:mm a"), moment('11:59p', "HH:mm a"))) {
+                                userUsageQueryResults.night++;
+                            }
+                        }
+
+                        console.log(userUsageQueryResults);
+
+
+
+                        for (var i = otherEvents.length - 1; i >= 0; i--) {
+                            currentTime= moment(otherEvents[i].timeStamp, "HH:mm a");
+
+                            if (currentTime.isBetween(moment('00:00a', "HH:mm a"), moment('05:59a', "HH:mm a"))) {
+                                othersUsageQueryResults.earlyMorning++;
+                            } else if (currentTime.isBetween(moment('06:00a', "HH:mm a"), moment('10:59a', "HH:mm a"))) {
+                                othersUsageQueryResults.morning++;
+                            } else if (currentTime.isBetween(moment('11:00a', "HH:mm a"), moment('03:59p', "HH:mm a"))) {
+                                othersUsageQueryResults.noon++;
+                            } else if (currentTime.isBetween(moment('04:00p', "HH:mm a"), moment('07:59p', "HH:mm a"))) {
+                                othersUsageQueryResults.evening++;
+                            } else if (currentTime.isBetween(moment('08:00p', "HH:mm a"), moment('11:59p', "HH:mm a"))) {
+                                othersUsageQueryResults.night++;
+                            }
+                        }
+
+                        console.log(othersUsageQueryResults);
+
+                        var graphThreeResult = {
+                            userResults: [],
+                            othersResults: []
+                        };
+
+                        graphThreeResult.userResults[0] = Math.round(userUsageQueryResults.earlyMorning * 1.5);
+                        graphThreeResult.userResults[1] = Math.round(userUsageQueryResults.morning * 1.5);
+                        graphThreeResult.userResults[2] = Math.round(userUsageQueryResults.noon * 1.5);
+                        graphThreeResult.userResults[3] = Math.round(userUsageQueryResults.evening * 1.5);
+                        graphThreeResult.userResults[4] = Math.round(userUsageQueryResults.night * 1.5);
+
+                        graphThreeResult.othersResults[0] = Math.round((othersUsageQueryResults.earlyMorning * 1.5) / count);
+                        graphThreeResult.othersResults[1] = Math.round((othersUsageQueryResults.morning * 1.5) / count);
+                        graphThreeResult.othersResults[2] = Math.round((othersUsageQueryResults.noon * 1.5) / count);
+                        graphThreeResult.othersResults[3] = Math.round((othersUsageQueryResults.evening * 1.5) / count);
+                        graphThreeResult.othersResults[4] = Math.round((othersUsageQueryResults.night * 1.5) / count);
+
+                        console.log(graphThreeResult.userResults);
+
+                        res.status(200).json(graphThreeResult);
+                    });
+
+                }
+            });
+
+        }
+    });
+}
+
+var getFavoriteTags = function(req, res) {
+
+    if (!req.payload._id) {
+        res.status(401).json({
+            message: 'UnauthorizedError: Private profile.'
+        });
+        return;
+    }
+
+    var query = {};
+
+    Group.find(query).exec(function(err, groups) {
+        if (err) {
+            res.status(401).json(err);
+        } else
+            res.status(200).json(groups);
+    });
+
+}
+
 router.post('/signup', signUp);
 router.post('/login', logIn);
 
@@ -552,5 +684,8 @@ router.get('/getusergroups', auth, getUserGroups);
 router.get('/getallgroups', auth, getAllGroups);
 router.put('/joingroup', auth, joinGroup);
 router.put('/leavegroup', auth, leaveGroup);
+
+router.get('/usage', auth, getUsageData);
+router.get('/favoritetags', auth, getFavoriteTags);
 
 module.exports = router;

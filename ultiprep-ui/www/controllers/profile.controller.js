@@ -17,6 +17,17 @@ app.controller('profileController', function($scope, $state, authentication, dat
         password: ''
     };
 
+    vm.usageColors = ['#45b7cd', '#ff6384', '#ff8e72'];
+
+    vm.usageLabels = [];
+    vm.usageData = [];
+    vm.datasetOverride = [];
+    vm.usageOptions = {};
+
+    vm.tagsLabels = [];
+    vm.tagsData = [];
+    vm.tagsOptions = {};
+
     data.getUser()
         .success(function(data) {
             vm.dummyUser._id = data._id;
@@ -26,6 +37,125 @@ app.controller('profileController', function($scope, $state, authentication, dat
         })
         .error(function(err) {
             alertToast('Could not load user details. ' + err.message);
+        });
+
+    window.chartColors = {
+        red: 'rgb(255, 99, 132)',
+        orange: 'rgb(255, 159, 64)',
+        yellow: 'rgb(255, 205, 86)',
+        green: 'rgb(75, 192, 192)',
+        blue: 'rgb(54, 162, 235)',
+        purple: 'rgb(153, 102, 255)',
+        grey: 'rgb(201, 203, 207)'
+    };
+
+    data.getUsageData()
+        .success(function(data) {
+
+            console.log(data.userResults);
+
+            var randomScalingFactor = function() {
+                return Math.round(Math.random() * 100);
+            };
+
+            var chartData = {
+                labels: ["Early morning", "Morning", "Noon", "Evening", "Night"],
+                datasets: [{
+                    type: 'line',
+                    label: 'Dataset 1',
+                    borderColor: window.chartColors.blue,
+                    borderWidth: 2,
+                    fill: false,
+                    data: data.otherResults
+                }, {
+                    type: 'bar',
+                    label: 'Dataset 2',
+                    backgroundColor: window.chartColors.red,
+                    data: data.userResults,
+                    borderColor: 'white',
+                    borderWidth: 2
+                }]
+            };
+
+            var ctx = document.getElementById("usage-canvas").getContext("2d");
+            window.myMixedChart = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    title: {
+                        display: true,
+                        text: 'Usage Statistics'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: true
+                    }
+                }
+            });
+
+        })
+        .error(function(err) {
+            alertToast(err.message);
+            return;
+        });
+
+    data.getFavoriteTags()
+        .success(function() {
+
+            var randomScalingFactor = function() {
+                return Math.round(Math.random() * 100);
+            };
+            var config = {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                            randomScalingFactor(),
+                        ],
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                        ],
+                        label: 'Dataset 1'
+                    }],
+                    labels: [
+                        "Red",
+                        "Orange",
+                        "Yellow",
+                        "Green",
+                        "Blue"
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Hot Topics'
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            };
+            var ctx = document.getElementById("tags-canvas").getContext("2d");
+            window.myDoughnut = new Chart(ctx, config);
+
+        })
+        .error(function(err) {
+            alertToast(err.message);
+            return;
         });
 
     vm.updateUser = function() {
@@ -57,7 +187,7 @@ app.controller('profileController', function($scope, $state, authentication, dat
                         vm.dummyUser.name = data.name;
                         vm.dummyUser.email = data.email;
                         vm.currentUser = data;
-                        $scope.$parent.currentUser = data;
+                        vm.$parent.currentUser = data;
                     })
                     .error(function(err) {
                         alertToast('Could not load user details. ' + err.message);

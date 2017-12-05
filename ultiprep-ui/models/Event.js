@@ -8,7 +8,7 @@ var eventSchema = mongoose.Schema({
         type: String
     },
     timeStamp: {
-        type: Number
+        type: Date
     },
     data: {
         type: Object
