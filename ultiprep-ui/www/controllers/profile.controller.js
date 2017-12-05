@@ -17,17 +17,6 @@ app.controller('profileController', function($scope, $state, authentication, dat
         password: ''
     };
 
-    vm.usageColors = ['#45b7cd', '#ff6384', '#ff8e72'];
-
-    vm.usageLabels = [];
-    vm.usageData = [];
-    vm.datasetOverride = [];
-    vm.usageOptions = {};
-
-    vm.tagsLabels = [];
-    vm.tagsData = [];
-    vm.tagsOptions = {};
-
     data.getUser()
         .success(function(data) {
             vm.dummyUser._id = data._id;
@@ -101,22 +90,22 @@ app.controller('profileController', function($scope, $state, authentication, dat
         });
 
     data.getFavoriteTags()
-        .success(function(data) {
-            console.log(data);
-            var randomScalingFactor = function() {
-                return Math.round(Math.random() * 100);
-            };
+        .success(function(newData) {
+            console.log(newData);
+
+            var data = [];
+            var labels = [];
+
+            for (var i = 0; i < newData.length; i++) {
+                data.push(newData[i].data);
+                labels.push(newData[i]._id.label);
+            }
+
             var config = {
                 type: 'doughnut',
                 data: {
                     datasets: [{
-                        data: [
-                            randomScalingFactor(),
-                            randomScalingFactor(),
-                            randomScalingFactor(),
-                            randomScalingFactor(),
-                            randomScalingFactor(),
-                        ],
+                        data: data,
                         backgroundColor: [
                             window.chartColors.red,
                             window.chartColors.orange,
@@ -124,15 +113,9 @@ app.controller('profileController', function($scope, $state, authentication, dat
                             window.chartColors.green,
                             window.chartColors.blue,
                         ],
-                        label: 'Dataset 1'
+                        label: 'Dataset'
                     }],
-                    labels: [
-                        "Red",
-                        "Orange",
-                        "Yellow",
-                        "Green",
-                        "Blue"
-                    ]
+                    labels: labels
                 },
                 options: {
                     responsive: true,
@@ -224,7 +207,7 @@ app.controller('profileController', function($scope, $state, authentication, dat
     vm.removeUser = function() {
 
         if (typeof vm.removeUserConfirmation.password !== 'string' || vm.removeUserConfirmation.password.length === 0) {
-            alertToast('Passeord is required for confirmation.');
+            alertToast('Password is required for confirmation.');
             return;
         }
 

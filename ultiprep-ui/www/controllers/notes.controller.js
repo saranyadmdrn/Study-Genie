@@ -57,14 +57,14 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
             $scope.currentUser = userData;
             $scope.note.isPinned[$scope.currentUser._id] = false;
 
-            data.getRecommendedNotes($scope.currentUser._id)
-                .success(function(data) {
-                    $scope.notes = data;
-                    resetSomeNotes();
-                })
-                .error(function(err) {
-                    alertToast('An error occurred while loading notes. ' + err.message);
-                });
+            // data.getRecommendedNotes($scope.currentUser._id)
+            //     .success(function(data) {
+            //         $scope.notes = data;
+            //         resetSomeNotes();
+            //     })
+            //     .error(function(err) {
+            //         alertToast('An error occurred while loading notes. ' + err.message);
+            //     });
         })
         .error(function(err) {
             alertToast('An error occurred while loading user details. ' + err.message);
@@ -80,14 +80,14 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
             alertToast('An error occurred while loading tags. ' + err.message);
         });
 
-    // data.getNotes()
-    //     .success(function(data) {
-    //         $scope.notes = data.sort(reverseCompareTimestamps);
-    //         resetSomeNotes();
-    //     })
-    //     .error(function(err) {
-    //         alertToast('An error occurred while loading notes. ' + err.message);
-    //     });
+    data.getNotes()
+        .success(function(data) {
+            $scope.notes = data.sort(reverseCompareTimestamps);
+            resetSomeNotes();
+        })
+        .error(function(err) {
+            alertToast('An error occurred while loading notes. ' + err.message);
+        });
 
     data.getUserGroups()
         .success(function(data) {

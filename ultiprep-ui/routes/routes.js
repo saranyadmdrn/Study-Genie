@@ -656,24 +656,26 @@ var getFavoriteTags = function(req, res) {
     var end = new Date();
     end.setHours(23, 59, 59, 999);
 
-    console.log('****************');
-
-    res.status(200).json("OK");
-
-    // Event.aggregate([{
-    //     "$match": {
-    //         "$and ": [{ 'timeStamp': { $gte: yesterday, $lt: end } }, {
-    //             "$or ": [{ ' type': { "$in ": ['note_update', 'note_open', 'note_pin', 'note_copy', 'note_create', 'note_share', 'tag_add', 'tag_remove', 'tag_open'] } }, { ' data.contributors': { " $in": ['Pani'] } }, { ' data.public': 'true' }, { ' data.isTrashed': 'false' }]
-    //         }]
-    //     }
-    // }, { ' $unwind': '$data.tags' }, { ' $group': { " _id": { ' label': '$data.tags' }, 'data': { ' $sum': 1 } } }]).exec(function(err, data) {
-    //     if (err) {
-    //         res.status(401).json(err);
-    //     } else {
-    //         console.log(data);
-    //         res.status(200).json(data);
-    //     }
-    // });
+    Event.aggregate([{
+        "$match": {
+            "$and": [{ 'timeStamp': { '$gte': yesterday, '$lt': end } }, {
+                "$or": [{ 'type': { "$in": ['note_update', 'note_open', 'note_pin', 'note_copy', 'note_create', 'note_share', 'tag_add', 'tag_remove', 'tag_open'] } },
+                    { 'data.contributors': { "$in": [req.payload._id] } }, { 'data.public': 'true' }, { 'data.isTrashed': 'false' }
+                ]
+            }]
+        }
+    },
+        { '$unwind': '$data.tags' },
+        { '$group': { "_id": { 'label': '$data.tags' }, 'data': { '$sum': 1 } } },
+        { '$limit': 5 }
+    ]).exec(function(err, data) {
+        if (err) {
+            res.status(401).json(err);
+        } else {
+            console.log(data);
+            res.status(200).json(data);
+        }
+    });
 
 }
 
