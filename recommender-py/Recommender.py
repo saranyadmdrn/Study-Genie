@@ -30,7 +30,7 @@ def recommendedNotes():
   print name
   #, { 'data.isTrashed': 'false' }
   result = list(mongo.db.events.aggregate(
-  [{ "$match": { "$and": [ {'type': {"$in" : ['note_update','note_open','note_pin','note_copy','note_create','note_share']}} ]}},
+  [{ "$match": { "$and": [ {'type': {"$in" : ['note_update','note_open','note_pin','note_copy','note_create','note_share']}},{'data.public' : 'true'} ]}},
       {"$group" : {
            "_id" :  {'user':"$user",  'note' : "$data._id"},
            'rating': {"$sum": 1 }
@@ -46,6 +46,8 @@ def recommendedNotes():
   notes = mongo.db.events.distinct('data._id')
   notesResult = []
   data = np.zeros((len(users), len(notes)))
+  if len(result) == 0:
+    return jsonify({'result' : notesResult})
   for i in result:
     print "fusgukfgsdlfgkfgdls"
     user = i["_id"]["user"]
