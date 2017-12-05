@@ -163,6 +163,14 @@ app.service('data', function($http, authentication) {
         });
     }
 
+    var getRecommendedNotes = function (userId) {
+        return $http.get('http://ec2-35-167-193-198.us-west-2.compute.amazonaws.com:8082/recommendedNotes?name=' + userId, {
+            headers: {
+                Authorization: 'Bearer ' + authentication.getToken()
+            }
+        });
+    }
+
     return {
         getUser: getUser,
         updateUser: updateUser,
@@ -183,6 +191,7 @@ app.service('data', function($http, authentication) {
         joinGroup: joinGroup,
         leaveGroup: leaveGroup,
         getUsageData: getUsageData,
-        getFavoriteTags: getFavoriteTags
+        getFavoriteTags: getFavoriteTags,
+        getRecommendedNotes: getRecommendedNotes
     };
 });

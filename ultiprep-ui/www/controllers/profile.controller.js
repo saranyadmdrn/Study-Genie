@@ -62,14 +62,14 @@ app.controller('profileController', function($scope, $state, authentication, dat
                 labels: ["Early morning", "Morning", "Noon", "Evening", "Night"],
                 datasets: [{
                     type: 'line',
-                    label: 'Dataset 1',
+                    label: 'Your Usage',
                     borderColor: window.chartColors.blue,
                     borderWidth: 2,
                     fill: false,
                     data: data.otherResults
                 }, {
                     type: 'bar',
-                    label: 'Dataset 2',
+                    label: 'Other users\' Usage',
                     backgroundColor: window.chartColors.red,
                     data: data.userResults,
                     borderColor: 'white',
