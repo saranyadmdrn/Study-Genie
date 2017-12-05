@@ -132,7 +132,7 @@ app.service('data', function($http, authentication) {
     }
 
     var joinGroup = function(group) {
-        return $http.get('/api/joingroup', group, {
+        return $http.put('/api/joingroup', group, {
             headers: {
                 Authorization: 'Bearer ' + authentication.getToken()
             }
@@ -140,7 +140,7 @@ app.service('data', function($http, authentication) {
     }
 
     var leaveGroup = function(group) {
-        return $http.get('/api/leavegroup', group, {
+        return $http.put('/api/leavegroup', group, {
             headers: {
                 Authorization: 'Bearer ' + authentication.getToken()
             }

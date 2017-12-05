@@ -368,18 +368,16 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
     }
 
     $scope.joinGroup = function(group) {
-        data.joinGroup(group);
         if (group.members.indexOf($scope.currentUser._id) < 0) {
             group.members.push($scope.currentUser._id);
-            $scope.apply();
+            data.joinGroup(group);
         }
     }
 
     $scope.leaveGroup = function(group) {
-        data.leaveGroup(group);
         if (group.members.indexOf($scope.currentUser._id) > -1) {
             group.members.splice(group.members.indexOf($scope.currentUser._id));
-            $scope.apply();
+            data.leaveGroup(group);
         }
     }
 
@@ -521,6 +519,15 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
             $scope.currentNote = null;
         });
     };
+
+    $scope.isSelf = function(member) {
+        console.log(member);
+        if (member == $scope.currentUser._id) {
+
+            return true;
+        }
+        return false;
+    }
 
     $scope.shareNote = function(note, $index) {
 

@@ -318,7 +318,7 @@ var getNotes = function(req, res) {
         return;
     }
 
-    var query = { $or: [ { author: req.payload._id }, { public: true } ] };
+    var query = { $or: [ { author: req.payload._id }, { public: true }, {contributors: {$in: [req.payload._id]} } ] };
     Note.find(query).exec(function(err, notes) {
         if (err)
             res.status(401).json(err);
@@ -463,19 +463,23 @@ var joinGroup = function(req, res) {
         return;
     }
 
-    var group = user.body;
+    var group = req.body;
+    console.log("*******************************************");
     var query = { _id: group._id};
 
     delete group._id;
     delete group.__v;
 
-    group.members.push(req.payload._id);
+    var index = group.members.indexOf(req.payload._id);
+    if (index == -1) {
+        group.members.push(req.payload._id);
+    }
 
-    Group.findOneAndUpdate(query, group, { upsert: true }).exec(function(err, user) {
+    Group.findOneAndUpdate(query, group, { upsert: true }).exec(function(err, group) {
         if (err) {
             res.status(401).json(err);
         } else
-            res.status(200).json(user);
+            res.status(200).json(group);
     });
 
 }
@@ -489,13 +493,11 @@ var leaveGroup = function(req, res) {
         return;
     }
 
-    var group = user.body;
+    var group = req.body;
     var query = { _id: group._id};
 
     delete group._id;
     delete group.__v;
-
-    group.members.push(req.payload._id);
 
     var index = group.members.indexOf(req.payload._id);
     if (index !== -1) {
