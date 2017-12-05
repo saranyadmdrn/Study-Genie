@@ -11,8 +11,9 @@ import numpy as np
 from sklearn.metrics.pairwise import pairwise_distances
 from bson.json_util import loads
 from bson import json_util
-
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app)
 app.config['MONGO_DBNAME'] = 'local'
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/local'
 mongo = PyMongo(app)
@@ -82,4 +83,4 @@ def recommendedNotes():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',port='8082')
