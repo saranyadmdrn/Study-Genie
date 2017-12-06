@@ -61,6 +61,10 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
                 .success(function(newData) {
                     $scope.notes = [];
                     for (var i = 0; i< newData.result.length; i++) {
+                        var jsonData = JSON.parse(newData.result[i]);
+
+                        jsonData._id = jsonData._id["$oid"];
+                        console.log(jsonData);
                         $scope.notes.push(JSON.parse(newData.result[i]));
                     }
                     resetSomeNotes();
