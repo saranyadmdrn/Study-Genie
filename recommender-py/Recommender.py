@@ -12,6 +12,8 @@ from sklearn.metrics.pairwise import pairwise_distances
 from bson.json_util import loads
 from bson import json_util
 from flask_cors import CORS
+from bson.objectid import ObjectId
+
 app = Flask(__name__)
 CORS(app)
 app.config['MONGO_DBNAME'] = 'local'
@@ -77,8 +79,10 @@ def recommendedNotes():
   
 
   for i in result:
+   # , {'author' : {"$eq" : name}}, { "$or": [ {'contributors' : {"$in" : [name]}}, {'public' : 'true'}] }
     print i
-    n = mongo.db.notes.find({ "$and": [ {'_id' : i}, {'author' : {"$ne" : name}}, { "$or": [ {'contributors' : {"$in" : [name]}}, {'public' : 'true'}] }] })
+    t = i.encode('ascii','ignore')
+    n = mongo.db.notes.find({ "$and": [ {'_id' : ObjectId(t)} , {'author' : {"$eq" : name}}, { "$or": [ {'contributors' : {"$in" : [name]}}, {'public' : 'true'}] }] })
 
     if n.count() > 0:
       print "dsd"
