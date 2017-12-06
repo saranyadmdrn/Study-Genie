@@ -43,13 +43,15 @@ def recommendedNotes():
   ))
 
   print result
+  if len(result) == 0:
+    return jsonify({'result' : notesResult})
 
   users = mongo.db.events.distinct('user')
   notes = mongo.db.events.distinct('data._id')
   notesResult = []
   data = np.zeros((len(users), len(notes)))
-  if len(result) == 0:
-    return jsonify({'result' : notesResult})
+
+  
   for i in result:
     print "fusgukfgsdlfgkfgdls"
     user = i["_id"]["user"]
@@ -80,16 +82,19 @@ def recommendedNotes():
 
   for i in result:
    # , {'author' : {"$eq" : name}}, { "$or": [ {'contributors' : {"$in" : [name]}}, {'public' : 'true'}] }
-    print i
+    #print i
     t = i.encode('ascii','ignore')
-    n = mongo.db.notes.find({ "$and": [ {'_id' : ObjectId(t)} , {'author' : {"$eq" : name}}, { "$or": [ {'contributors' : {"$in" : [name]}}, {'public' : 'true'}] }] })
+    n = mongo.db.notes.find({ "$and": [ {'_id' : ObjectId(t)}, { "$or": [ {'contributors' : {"$in" : [name]}}, {'author' : {"$eq" : name}}, {'public' : 'true'}] }] })
+    #({ "$and": [ {'_id' : ObjectId(t)}, { "$or": [ {'contributors' : {"$in" : [name]}}, {'author' : {"$eq" : name}}, {'public' : 'true'}] }] })
 
     if n.count() > 0:
       print "dsd"
-      json = json_util.dumps(n)
-      print json
+      #oid = str(n[0]["_id"])
+      #n[0]["_id"] = oid
+      json = json_util.dumps(n[0])
+      #print json
       notesResult.append(json)
-  print notesResult
+  #print notesResult
   return jsonify({'result' : notesResult})
 
 
