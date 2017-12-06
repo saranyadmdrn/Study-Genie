@@ -71,7 +71,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
@@ -111,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="data.service.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data.service.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/services/data.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2775">
-              <caret line="185" column="31" lean-forward="true" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
+            <state relative-caret-position="426">
+              <caret line="165" column="34" lean-forward="true" selection-start-line="165" selection-start-column="34" selection-end-line="165" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -211,8 +211,8 @@
         <option value="$PROJECT_DIR$/www/controllers/profile.controller.js" />
         <option value="$PROJECT_DIR$/www/views/sub-views/notes.groups.view.html" />
         <option value="$PROJECT_DIR$/routes/routes.js" />
-        <option value="$PROJECT_DIR$/www/services/data.service.js" />
         <option value="$PROJECT_DIR$/www/controllers/notes.controller.js" />
+        <option value="$PROJECT_DIR$/www/services/data.service.js" />
       </list>
     </option>
   </component>
@@ -423,12 +423,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1511463905693</updated>
-      <workItem from="1511463908982" duration="77763000" />
+      <workItem from="1511463908982" duration="78165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77763000" />
+    <option name="totallyTimeSpent" value="78165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -833,14 +833,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/services/data.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2775">
-          <caret line="185" column="31" lean-forward="true" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/controllers/notes.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
@@ -855,6 +847,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/services/data.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="165" column="34" lean-forward="true" selection-start-line="165" selection-start-column="34" selection-end-line="165" selection-end-column="34" />
           <folding />
         </state>
       </provider>
