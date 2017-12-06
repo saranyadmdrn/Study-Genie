@@ -19,3 +19,7 @@ Set up project (Local):
 Online hosted application:
 
 1. http://ec2-34-213-252-195.us-west-2.compute.amazonaws.com:7001/
+
+Youtube URL of presentation:
+
+https://www.youtube.com/watch?v=YYpQmNrDgQU
