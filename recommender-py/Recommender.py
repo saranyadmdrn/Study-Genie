@@ -43,12 +43,13 @@ def recommendedNotes():
   ))
 
   print result
+  notesResult = []
   if len(result) == 0:
     return jsonify({'result' : notesResult})
 
   users = mongo.db.events.distinct('user')
   notes = mongo.db.events.distinct('data._id')
-  notesResult = []
+  
   data = np.zeros((len(users), len(notes)))
 
   
