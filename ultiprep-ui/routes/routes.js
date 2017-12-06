@@ -537,7 +537,7 @@ function getUserUsage(id, res) {
                         graphThreeResult.othersResults[3] = Math.round((othersUsageQueryResults.evening * 1.5) / count);
                         graphThreeResult.othersResults[4] = Math.round((othersUsageQueryResults.night * 1.5) / count);
 
-                        console.log(graphThreeResult.userResults);
+                        console.log(graphThreeResult.othersResults);
 
                         res.status(200).json(graphThreeResult);
                     });
