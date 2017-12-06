@@ -1,6 +1,6 @@
 var app = angular.module('ultiprep');
 
-app.controller('profileController', function($scope, $state, authentication, data) {
+app.controller('profileController', ["$scope", "$state", "authentication", "data", function($scope, $state, authentication, data) {
     var vm = this;
 
     vm.isEditingName = false;
@@ -233,4 +233,4 @@ app.controller('profileController', function($scope, $state, authentication, dat
 
     setBackButtonToModalClose();
     setLayout(5);
-});
+}]);

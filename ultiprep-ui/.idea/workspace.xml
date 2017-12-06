@@ -34,11 +34,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="notes.controller.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="notes.controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/controllers/notes.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="76" column="40" lean-forward="false" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
+            <state relative-caret-position="30">
+              <caret line="2" column="81" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="81" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.controller.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/controllers/home.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.controller.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/controllers/profile.controller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -89,37 +109,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2730">
               <caret line="182" column="40" lean-forward="false" selection-start-line="182" selection-start-column="40" selection-end-line="182" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1927">
-              <caret line="11" column="47" lean-forward="true" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-              <folding>
-                <marker date="1512464233271" expanded="true" signature="8192:8226" ph="..." />
-                <marker date="1512464233271" expanded="true" signature="8376:8410" ph="..." />
-                <marker date="1512464233271" expanded="true" signature="8561:8595" ph="..." />
-                <marker date="1512464233271" expanded="true" signature="8746:8780" ph="..." />
-                <marker date="1512464233271" expanded="true" signature="8931:8965" ph="..." />
-                <marker date="1512464233271" expanded="true" signature="9494:9528" ph="..." />
-                <marker date="1512464233271" expanded="true" signature="9678:9712" ph="..." />
-                <marker date="1512464233271" expanded="true" signature="9863:9897" ph="..." />
-                <marker date="1512464233271" expanded="true" signature="10048:10082" ph="..." />
-                <marker date="1512464233271" expanded="true" signature="10233:10267" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notes.trash.view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/views/sub-views/notes.trash.view.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="10" lean-forward="true" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -189,7 +178,6 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/www/views/sub-views/superheroes.json" />
         <option value="$PROJECT_DIR$/www/assets/angular-tags/ng-tags-input.bootstrap.css" />
-        <option value="$PROJECT_DIR$/www/controllers/home.controller.js" />
         <option value="$PROJECT_DIR$/www/assets/packery/2.1.1/packery.pkgd.min.js" />
         <option value="$PROJECT_DIR$/www/assets/angular-infinite-scroll/ngInfiniteScroll.js" />
         <option value="$PROJECT_DIR$/www/assets/angular-infinite-scroll/ngInfiniteScroll.min.js" />
@@ -212,11 +200,12 @@
         <option value="$PROJECT_DIR$/www/views/sub-views/notes.profile.view.html" />
         <option value="$PROJECT_DIR$/models/Event.js" />
         <option value="$PROJECT_DIR$/models/Note.js" />
-        <option value="$PROJECT_DIR$/www/controllers/profile.controller.js" />
         <option value="$PROJECT_DIR$/www/views/sub-views/notes.groups.view.html" />
         <option value="$PROJECT_DIR$/routes/routes.js" />
         <option value="$PROJECT_DIR$/www/services/data.service.js" />
         <option value="$PROJECT_DIR$/www/controllers/notes.controller.js" />
+        <option value="$PROJECT_DIR$/www/controllers/home.controller.js" />
+        <option value="$PROJECT_DIR$/www/controllers/profile.controller.js" />
       </list>
     </option>
   </component>
@@ -281,18 +270,6 @@
               <item name="ultiprep-ui" type="b2602c69:ProjectViewProjectNode" />
               <item name="ultiprep-ui" type="462c0819:PsiDirectoryNode" />
               <item name="www" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ultiprep-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ultiprep-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ultiprep-ui" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ultiprep-ui" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ultiprep-ui" type="b2602c69:ProjectViewProjectNode" />
@@ -438,7 +415,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81300000" />
+    <option name="totallyTimeSpent" value="81476000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -544,6 +521,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-106">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -589,17 +567,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/controllers/home.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="34" lean-forward="true" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/views/home.view.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
           <caret line="62" column="41" lean-forward="false" selection-start-line="62" selection-start-column="41" selection-end-line="62" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -786,14 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/controllers/profile.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="202" column="37" lean-forward="false" selection-start-line="202" selection-start-column="37" selection-end-line="202" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/Note.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -865,10 +829,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/controllers/home.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="19" lean-forward="true" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/controllers/notes.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="76" column="40" lean-forward="false" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
+        <state relative-caret-position="30">
+          <caret line="2" column="81" lean-forward="true" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/controllers/profile.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
           <folding />
         </state>
       </provider>

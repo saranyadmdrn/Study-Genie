@@ -1,6 +1,6 @@
 var app = angular.module('ultiprep');
 
-app.controller('homeController', function($state, authentication) {
+app.controller('homeController', ["$state", "authentication", function($state, authentication) {
     var vm = this;
 
     vm.registerCredentials = {
@@ -83,4 +83,4 @@ app.controller('homeController', function($state, authentication) {
                 }, 1000);
             });
     };
-})
+}])
