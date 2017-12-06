@@ -14,3 +14,8 @@ Set up project (Local):
 12. To view user usage statistics, go to User Profile & Stats page.
 13. To join or leave groups, go to Groups page.
 14. There is a dump package within the repository in ultiprep-ui folder called dump. To restore the dump file and prepopulate some data, run the following command: mongorestore --db ultiprep-db ultiprep-ui/dump/ultiprep-db/
+
+
+Online hosted application:
+
+1. http://ec2-34-213-252-195.us-west-2.compute.amazonaws.com:7001/
