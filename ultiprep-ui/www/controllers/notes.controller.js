@@ -59,7 +59,6 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
 
             data.getRecommendedNotes($scope.currentUser._id)
                 .success(function(newData) {
-                    console.log(JSON.parse(newData.result));
                     $scope.notes = [];
                     for (var i = 0; i< newData.result.length; i++) {
                         $scope.notes.push(JSON.parse(newData.result[i]));

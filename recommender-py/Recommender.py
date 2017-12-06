@@ -17,7 +17,7 @@ from bson.objectid import ObjectId
 app = Flask(__name__)
 CORS(app)
 app.config['MONGO_DBNAME'] = 'local'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/local'
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/ultiprep-db'
 mongo = PyMongo(app)
 
 def predict(ratings, similarity):
@@ -101,4 +101,4 @@ def recommendedNotes():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port='8082')
+    app.run(port='8082')
