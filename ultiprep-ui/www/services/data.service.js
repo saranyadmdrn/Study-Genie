@@ -2,6 +2,8 @@ var app = angular.module('ultiprep');
 
 app.service('data', function($http, authentication) {
 
+    var recommenderBaseUrl = 'http://localhost:8082';
+
     var getUser = function() {
         return $http.get('/api/getuser', {
             headers: {
@@ -164,7 +166,7 @@ app.service('data', function($http, authentication) {
     }
 
     var getRecommendedNotes = function (userId) {
-        return $http.get('http://localhost:8082/recommendedNotes?name=' + userId);
+        return $http.get(recommenderBaseUrl + '/recommendedNotes?name=' + userId);
     }
 
     return {
