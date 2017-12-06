@@ -132,7 +132,7 @@ app.service('data', function($http, authentication) {
     }
 
     var joinGroup = function(group) {
-        return $http.get('/api/joingroup', group, {
+        return $http.put('/api/joingroup', group, {
             headers: {
                 Authorization: 'Bearer ' + authentication.getToken()
             }
@@ -140,7 +140,7 @@ app.service('data', function($http, authentication) {
     }
 
     var leaveGroup = function(group) {
-        return $http.get('/api/leavegroup', group, {
+        return $http.put('/api/leavegroup', group, {
             headers: {
                 Authorization: 'Bearer ' + authentication.getToken()
             }
@@ -164,7 +164,7 @@ app.service('data', function($http, authentication) {
     }
 
     var getRecommendedNotes = function (userId) {
-        return $http.get('http://ec2-35-167-193-198.us-west-2.compute.amazonaws.com:8082/recommendedNotes?name=' + userId, {
+        return $http.get('http://localhost:8082/recommendedNotes?name=' + userId, {
             headers: {
                 Authorization: 'Bearer ' + authentication.getToken()
             }

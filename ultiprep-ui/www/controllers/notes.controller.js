@@ -57,14 +57,14 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
             $scope.currentUser = userData;
             $scope.note.isPinned[$scope.currentUser._id] = false;
 
-            // data.getRecommendedNotes($scope.currentUser._id)
-            //     .success(function(data) {
-            //         $scope.notes = data;
-            //         resetSomeNotes();
-            //     })
-            //     .error(function(err) {
-            //         alertToast('An error occurred while loading notes. ' + err.message);
-            //     });
+            data.getRecommendedNotes($scope.currentUser._id)
+                .success(function(data) {
+                    $scope.notes = data;
+                    resetSomeNotes();
+                })
+                .error(function(err) {
+                    alertToast('An error occurred while loading notes. ' + err.message);
+                });
         })
         .error(function(err) {
             alertToast('An error occurred while loading user details. ' + err.message);
@@ -80,14 +80,14 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
             alertToast('An error occurred while loading tags. ' + err.message);
         });
 
-    data.getNotes()
-        .success(function(data) {
-            $scope.notes = data.sort(reverseCompareTimestamps);
-            resetSomeNotes();
-        })
-        .error(function(err) {
-            alertToast('An error occurred while loading notes. ' + err.message);
-        });
+    // data.getNotes()
+    //     .success(function(data) {
+    //         $scope.notes = data.sort(reverseCompareTimestamps);
+    //         resetSomeNotes();
+    //     })
+    //     .error(function(err) {
+    //         alertToast('An error occurred while loading notes. ' + err.message);
+    //     });
 
     data.getUserGroups()
         .success(function(data) {
@@ -368,18 +368,16 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
     }
 
     $scope.joinGroup = function(group) {
-        data.joinGroup(group);
         if (group.members.indexOf($scope.currentUser._id) < 0) {
             group.members.push($scope.currentUser._id);
-            $scope.apply();
+            data.joinGroup(group);
         }
     }
 
     $scope.leaveGroup = function(group) {
-        data.leaveGroup(group);
         if (group.members.indexOf($scope.currentUser._id) > -1) {
             group.members.splice(group.members.indexOf($scope.currentUser._id));
-            $scope.apply();
+            data.leaveGroup(group);
         }
     }
 
@@ -521,6 +519,15 @@ app.controller('notesController', ["$scope", "$state", "authentication", "data",
             $scope.currentNote = null;
         });
     };
+
+    $scope.isSelf = function(member) {
+        console.log(member);
+        if (member == $scope.currentUser._id) {
+
+            return true;
+        }
+        return false;
+    }
 
     $scope.shareNote = function(note, $index) {
 

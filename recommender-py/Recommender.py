@@ -30,7 +30,11 @@ def recommendedNotes():
   print name
   #, { 'data.isTrashed': 'false' }
   result = list(mongo.db.events.aggregate(
+<<<<<<< HEAD
   [{ "$match": { "$and": [ {'type': {"$in" : ['note_update','note_open','note_pin','note_copy','note_create','note_share']}} ]}},
+=======
+  [{ "$match": { "$and": [ {'type': {"$in" : ['note_update','note_open','note_pin','note_copy','note_create','note_share']}}]}},
+>>>>>>> b62bca96f86e7de334f98615b078f54970cd353f
       {"$group" : {
            "_id" :  {'user':"$user",  'note' : "$data._id"},
            'rating': {"$sum": 1 }
@@ -79,7 +83,10 @@ def recommendedNotes():
   for i in result:
     print i
     n = mongo.db.notes.find({ "$and": [ {'_id' : i}, {'author' : {"$ne" : name}}, { "$or": [ {'contributors' : {"$in" : [name]}}, {'public' : 'true'}] }] })
+<<<<<<< HEAD
     
+=======
+>>>>>>> b62bca96f86e7de334f98615b078f54970cd353f
     if n.count() > 0:
       print "dsd"
       json = json_util.dumps(n)
