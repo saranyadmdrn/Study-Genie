@@ -83,10 +83,6 @@ def recommendedNotes():
   for i in result:
     print i
     n = mongo.db.notes.find({ "$and": [ {'_id' : i}, {'author' : {"$ne" : name}}, { "$or": [ {'contributors' : {"$in" : [name]}}, {'public' : 'true'}] }] })
-<<<<<<< HEAD
-    
-=======
->>>>>>> b62bca96f86e7de334f98615b078f54970cd353f
     if n.count() > 0:
       print "dsd"
       json = json_util.dumps(n)
