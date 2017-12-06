@@ -164,11 +164,7 @@ app.service('data', function($http, authentication) {
     }
 
     var getRecommendedNotes = function (userId) {
-        return $http.get('http://localhost:8082/recommendedNotes?name=' + userId, {
-            headers: {
-                Authorization: 'Bearer ' + authentication.getToken()
-            }
-        });
+        return $http.get('http://localhost:8082/recommendedNotes?name=' + userId);
     }
 
     return {
