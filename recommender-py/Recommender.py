@@ -48,6 +48,7 @@ def recommendedNotes():
     return jsonify({'result' : notesResult})
 
   users = mongo.db.events.distinct('user')
+  users.append(name)
   notes = mongo.db.events.distinct('data._id')
   
   data = np.zeros((len(users), len(notes)))
@@ -101,4 +102,4 @@ def recommendedNotes():
 
 
 if __name__ == '__main__':
-    app.run(port='8082')
+    app.run(host='0.0.0.0', port='8082')

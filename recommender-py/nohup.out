@@ -1,0 +1,205 @@
+ * Running on http://127.0.0.1:8082/ (Press CTRL+C to quit)
+ * Running on http://0.0.0.0:8082/ (Press CTRL+C to quit)
+70.176.115.208 - - [07/Dec/2017 10:05:57] "GET /recommendedNotes?name=5a271bc4fb6a877671eab28e HTTP/1.1" 200 -
+70.176.115.208 - - [07/Dec/2017 10:05:57] "GET /favicon.ico HTTP/1.1" 404 -
+5a271bc4fb6a877671eab28e
+[{u'rating': 1, u'_id': {u'note': u'5a2713432f1d0375f3c03832', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 2, u'_id': {u'note': u'5a1e7a367aa16f2d222317ce', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 1, u'_id': {u'note': u'5a1e79ff7aa16f2d222317c4', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a1e80050f8f192d3f5882c0', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 6, u'_id': {u'note': u'5a1e797d7aa16f2d222317b5', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a1e79d07aa16f2d222317be', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a271bf9fb6a877671eab2a0', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 5, u'_id': {u'note': u'5a271be8fb6a877671eab29b', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 4, u'_id': {u'note': u'5a271bdafb6a877671eab296', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 5, u'_id': {u'note': u'5a271bcdfb6a877671eab291', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 8, u'_id': {u'note': u'5a271cc9fb6a877671eab2bc', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 4, u'_id': {u'note': u'5a271cb2fb6a877671eab2b3', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 4, u'_id': {u'note': u'5a271cbefb6a877671eab2b8', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 14, u'_id': {u'note': u'5a271ebf4457b2772140e3e7', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 4, u'_id': {u'note': u'5a271e954457b2772140e3dc', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 8, u'_id': {u'note': u'5a271e864457b2772140e3d7', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 5, u'_id': {u'note': u'5a271ea44457b2772140e3e1', u'user': u'5a271e6a4457b2772140e3d1'}}]
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+matrix
+[[  6.   3.   1.   2.   3.   1.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   5.   4.   5.   3.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   4.   4.   8.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   8.
+    4.   5.  14.]]
+similarity
+[[ 0.  1.  1.  1.]
+ [ 1.  0.  1.  1.]
+ [ 1.  1.  0.  1.]
+ [ 1.  1.  1.  0.]]
+[[ 1.  0.  0.  0.]
+ [ 0.  1.  0.  0.]
+ [ 0.  0.  1.  0.]
+ [ 0.  0.  0.  1.]]
+prediction
+[[  6.   3.   1.   2.   3.   1.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   5.   4.   5.   3.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   4.   4.   8.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   8.
+    4.   5.  14.]]
+[u'5a271be8fb6a877671eab29b', u'5a271bcdfb6a877671eab291', u'5a271bdafb6a877671eab296', u'5a271bf9fb6a877671eab2a0', u'5a271e954457b2772140e3dc', u'5a271e864457b2772140e3d7', u'5a271cc9fb6a877671eab2bc', u'5a271cbefb6a877671eab2b8', u'5a271cb2fb6a877671eab2b3', u'5a1e797d7aa16f2d222317b5', u'5a2713432f1d0375f3c03832', u'5a1e79d07aa16f2d222317be', u'5a1e7a367aa16f2d222317ce', u'5a1e79ff7aa16f2d222317c4', u'5a1e80050f8f192d3f5882c0', u'5a271ea44457b2772140e3e1', u'5a271ebf4457b2772140e3e7']
+dsd
+dsd
+dsd
+dsd
+dsd
+dsd
+dsd
+5a271bc4fb6a877671eab28e
+[{u'rating': 1, u'_id': {u'note': u'5a2713432f1d0375f3c03832', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 2, u'_id': {u'note': u'5a1e7a367aa16f2d222317ce', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 1, u'_id': {u'note': u'5a1e79ff7aa16f2d222317c4', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a1e80050f8f192d3f5882c0', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 6, u'_id': {u'note': u'5a1e797d7aa16f2d222317b5', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note':70.176.115.208 - - [07/Dec/2017 10:06:43] "GET /recommendedNotes?name=5a271bc4fb6a877671eab28e HTTP/1.1" 200 -
+ u'5a1e79d07aa16f2d222317be', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a271bf9fb6a877671eab2a0', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 5, u'_id': {u'note': u'5a271be8fb6a877671eab29b', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 4, u'_id': {u'note': u'5a271bdafb6a877671eab296', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 5, u'_id': {u'note': u'5a271bcdfb6a877671eab291', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 8, u'_id': {u'note': u'5a271cc9fb6a877671eab2bc', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 4, u'_id': {u'note': u'5a271cb2fb6a877671eab2b3', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 4, u'_id': {u'note': u'5a271cbefb6a877671eab2b8', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 14, u'_id': {u'note': u'5a271ebf4457b2772140e3e7', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 4, u'_id': {u'note': u'5a271e954457b2772140e3dc', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 8, u'_id': {u'note': u'5a271e864457b2772140e3d7', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 5, u'_id': {u'note': u'5a271ea44457b2772140e3e1', u'user': u'5a271e6a4457b2772140e3d1'}}]
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+matrix
+[[  6.   3.   1.   2.   3.   1.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   5.   4.   5.   3.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   4.   4.   8.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   8.
+    4.   5.  14.]]
+similarity
+[[ 0.  1.  1.  1.]
+ [ 1.  0.  1.  1.]
+ [ 1.  1.  0.  1.]
+ [ 1.  1.  1.  0.]]
+[[ 1.  0.  0.  0.]
+ [ 0.  1.  0.  0.]
+ [ 0.  0.  1.  0.]
+ [ 0.  0.  0.  1.]]
+prediction
+[[  6.   3.   1.   2.   3.   1.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   5.   4.   5.   3.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   4.   4.   8.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   8.
+    4.   5.  14.]]
+[u'5a271be8fb6a877671eab29b', u'5a271bcdfb6a877671eab291', u'5a271bdafb6a877671eab296', u'5a271bf9fb6a877671eab2a0', u'5a271e954457b2772140e3dc', u'5a271e864457b2772140e3d7', u'5a271cc9fb6a877671eab2bc', u'5a271cbefb6a877671eab2b8', u'5a271cb2fb6a877671eab2b3', u'5a1e797d7aa16f2d222317b5', u'5a2713432f1d0375f3c03832', u'5a1e79d07aa16f2d222317be', u'5a1e7a367aa16f2d222317ce', u'5a1e79ff7aa16f2d222317c4', u'5a1e80050f8f192d3f5882c0', u'5a271ea44457b2772140e3e1', u'5a271ebf4457b2772140e3e7']
+dsd
+dsd
+dsd
+dsd
+dsd
+dsd
+dsd
+5a271bc4fb6a877671eab28e
+[{u'rating': 1, u'_id': {u'note': u'5a2713432f1d0375f3c03832', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 2, u'_id': {u'note': u'5a1e7a367aa16f2d222317ce', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 1, u'_id': {u'note': u'5a1e79ff7aa16f2d222317c4', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a1e80050f8f192d3f5882c0', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 6, u'_id': {u'note': u'5a1e797d7aa16f2d222317b5', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a1e79d07aa16f2d222317be', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a271bf9fb6a877671eab2a0', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 5, u'_id': {u'note': u'5a271be8fb6a877671eab29b', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 4, u'_id': {u'note': u'5a271bdafb6a877671eab296', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 5, u'_id': {u'note': u'5a271bcdfb6a877671eab291', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 8, u'_id': {u'note': u'5a271cc9fb6a877671eab2bc', u'user': u'5a271ca3fb6a8776770.176.115.208 - - [07/Dec/2017 10:07:05] "GET /recommendedNotes?name=5a271bc4fb6a877671eab28e HTTP/1.1" 200 -
+1eab2ae'}}, {u'rating': 4, u'_id': {u'note': u'5a271cb2fb6a877671eab2b3', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 4, u'_id': {u'note': u'5a271cbefb6a877671eab2b8', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 14, u'_id': {u'note': u'5a271ebf4457b2772140e3e7', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 4, u'_id': {u'note': u'5a271e954457b2772140e3dc', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 8, u'_id': {u'note': u'5a271e864457b2772140e3d7', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 5, u'_id': {u'note': u'5a271ea44457b2772140e3e1', u'user': u'5a271e6a4457b2772140e3d1'}}]
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+fusgukfgsdlfgkfgdls
+matrix
+[[  6.   3.   1.   2.   3.   1.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   5.   4.   5.   3.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   4.   4.   8.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   8.
+    4.   5.  14.]]
+similarity
+[[ 0.  1.  1.  1.]
+ [ 1.  0.  1.  1.]
+ [ 1.  1.  0.  1.]
+ [ 1.  1.  1.  0.]]
+[[ 1.  0.  0.  0.]
+ [ 0.  1.  0.  0.]
+ [ 0.  0.  1.  0.]
+ [ 0.  0.  0.  1.]]
+prediction
+[[  6.   3.   1.   2.   3.   1.   0.   0.   0.   0.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   5.   4.   5.   3.   0.   0.   0.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   4.   4.   8.   0.
+    0.   0.   0.]
+ [  0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   0.   8.
+    4.   5.  14.]]
+[u'5a271be8fb6a877671eab29b', u'5a271bcdfb6a877671eab291', u'5a271bdafb6a877671eab296', u'5a271bf9fb6a877671eab2a0', u'5a271e954457b2772140e3dc', u'5a271e864457b2772140e3d7', u'5a271cc9fb6a877671eab2bc', u'5a271cbefb6a877671eab2b8', u'5a271cb2fb6a877671eab2b3', u'5a1e797d7aa16f2d222317b5', u'5a2713432f1d0375f3c03832', u'5a1e79d07aa16f2d222317be', u'5a1e7a367aa16f2d222317ce', u'5a1e79ff7aa16f2d222317c4', u'5a1e80050f8f192d3f5882c0', u'5a271ea44457b2772140e3e1', u'5a271ebf4457b2772140e3e7']
+dsd
+dsd
+dsd
+dsd
+dsd
+dsd
+dsd
+5a2912d6f54da162f278dde2
+[{u'rating': 1, u'_id': {u'note': u'5a2713432f1d0375f3c03832', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 2, u'_id': {u'note': u'5a1e7a367aa16f2d222317ce', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 1, u'_id': {u'note': u'5a1e79ff7aa16f2d222317c4', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a1e80050f8f192d3f5882c0', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 6, u'_id': {u'note': u'5a1e797d7aa16f2d222317b5', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a1e79d07aa16f2d222317be', u'user': u'5a1e787a8e2f3a2d18a51666'}}, {u'rating': 3, u'_id': {u'note': u'5a271bf9fb6a877671eab2a0', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 5, u'_id': {u'note': u'5a271be8fb6a877671eab29b', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 4, u'_id': {u'note': u'5a271bdafb6a877671eab296', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 5, u'_id': {u'note': u'5a271bcdfb6a877671eab291', u'user': u'5a271bc4fb6a877671eab28e'}}, {u'rating': 8, u'_id': {u'note': u'5a271cc9fb6a877671eab2bc', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 4, u'_id': {u'note': u'5a271cb2fb6a877671eab2b3', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 4, u'_id': {u'note': u'5a271cbefb6a877671eab2b8', u'user': u'5a271ca3fb6a877671eab2ae'}}, {u'rating': 14, u'_id': {u'note': u'5a271ebf4457b2772140e3e7', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 4, u'_id': {u'note': u'5a271e954457b2772140e3dc', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 8, u'_id': {u'note': u'5a271e864457b2772140e3d7', u'user': u'5a271e6a4457b2772140e3d1'}}, {u'rating': 5, u'_id': {u'note': u'5a271ea444[2017-12-07 10:07:19,897] ERROR in app: Exception on /recommendedNotes [GET]
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "Recommender.py", line 76, in recommendedNotes
+    prediction = np.argsort(-user_prediction[users.index(name)])
+ValueError: u'5a2912d6f54da162f278dde2' is not in list
+70.176.115.208 - - [07/Dec/2017 10:07:19] "GET /recommendedNotes?name=5a2912d6f54da162f278dde2 HTTP/1.1" 500 -
+[2017-12-07 10:07:45,133] ERROR in app: Exception on /recommendedNotes [GET]
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/.local/lib/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "Recommender.py", line 76, in recommendedNotes
+    prediction = np.argsort(-user_prediction[users.index(name)])
+ValueError: u'5a2912d6f54da162f278dde2' is not in list
+70.176.115.208 - - [07/Dec/2017 10:07:45] "GET /recommendedNotes?name=5a2912d6f54da162f278dde2 HTTP/1.1" 500 -

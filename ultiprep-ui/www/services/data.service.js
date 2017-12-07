@@ -2,7 +2,7 @@ var app = angular.module('ultiprep');
 
 app.service('data', function($http, authentication) {
 
-    var recommenderBaseUrl = 'http://localhost:8082';
+    var recommenderBaseUrl = 'http://ec2-34-213-252-195.us-west-2.compute.amazonaws.com:8082';
 
     var getUser = function() {
         return $http.get('/api/getuser', {
